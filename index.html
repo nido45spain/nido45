@@ -4,288 +4,1009 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NIDO45 — Solicitar Presupuesto</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Jost,sans-serif;font-weight:300;background:#1A2E1A;color:#F8F5EF;min-height:100vh}
-header{padding:20px 18px 14px;text-align:center;border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:0;background:#1A2E1A;z-index:9}
-.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#C9A84C;letter-spacing:3px}
-.sub{font-size:8px;letter-spacing:4px;color:#9A9285;margin-top:2px;text-transform:uppercase}
-.hero{padding:26px 18px 18px;text-align:center;max-width:560px;margin:0 auto}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,6vw,34px);font-weight:400;color:#fff;line-height:1.2}
-.hero h1 em{color:#C9A84C;font-style:italic}
-.gl{width:36px;height:1px;background:#C9A84C;margin:12px auto}
-.hero p{font-size:13px;color:#E8D5A3;line-height:1.7}
-form{max-width:560px;margin:0 auto;padding:0 14px 60px}
-.sec{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.16);border-radius:10px;padding:16px 14px;margin-bottom:10px}
-.sn{font-size:8px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:2px}
-.st{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:2px}
-.sh{font-size:12px;color:#9A9285;margin-bottom:10px;line-height:1.5}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.opt{display:flex;align-items:flex-start;gap:8px;padding:9px 11px;border:1px solid rgba(255,255,255,.1);border-radius:6px;cursor:pointer;font-size:12px;color:#F8F5EF;line-height:1.3;transition:.12s;position:relative}
-.opt input{position:absolute;opacity:0;width:0;height:0}
-.price{display:block;font-size:10px;color:#C9A84C;margin-top:1px}
-.cb{width:15px;height:15px;border:1.5px solid rgba(255,255,255,.2);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:.12s}
-.ck{display:none}
-.fi{margin-top:8px}
-.fi label{display:block;font-size:9px;letter-spacing:2px;color:#9A9285;text-transform:uppercase;margin-bottom:3px}
-.fi input,.fi textarea,.fi select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#F8F5EF;font-family:Jost,sans-serif;font-size:13px;padding:9px 11px;outline:none;transition:.12s;-webkit-appearance:none}
-.fi input:focus,.fi textarea:focus,.fi select:focus{border-color:#C9A84C}
-.fi textarea{resize:vertical;min-height:60px}
-.fi input::placeholder,.fi textarea::placeholder{color:rgba(154,146,133,.5)}
-.fi select option{background:#1A2E1A;color:#F8F5EF}
-.dv{height:1px;background:rgba(255,255,255,.07);margin:8px 0}
-.cond{display:none;margin-top:6px}
-.btn{width:100%;background:#C9A84C;color:#1A2E1A;font-family:Jost,sans-serif;font-weight:500;font-size:14px;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:8px;padding:17px;cursor:pointer;margin-top:6px;transition:.15s}
-.btn:hover{background:#d4b05a}
-.btn:disabled{opacity:.6;cursor:not-allowed}
-.note{text-align:center;font-size:11px;color:#9A9285;margin-top:8px;line-height:1.5}
-footer{border-top:1px solid rgba(201,168,76,.18);padding:14px 18px;text-align:center;font-size:10px;color:#9A9285;line-height:1.8}
-footer a{color:#C9A84C;text-decoration:none}
-@media(max-width:400px){.g2,.g3{grid-template-columns:1fr}}
-/* Success */
-#success{display:none;min-height:80vh;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;max-width:500px;margin:0 auto}
-.ic{width:72px;height:72px;background:rgba(201,168,76,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;border:2px solid #C9A84C}
-#success h1{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:#fff;margin-bottom:12px;line-height:1.2}
-#success h1 em{color:#C9A84C;font-style:italic}
-#success p{font-size:14px;color:#E8D5A3;line-height:1.8;max-width:400px}
-.badge{display:inline-block;margin-top:24px;padding:10px 24px;border:1px solid rgba(201,168,76,.4);border-radius:6px;font-size:12px;color:#9A9285;letter-spacing:1px}
+  :root {
+    --cream: #F8F4EE;
+    --dark: #1C1C1A;
+    --gold: #B8943C;
+    --gold-light: #D4A853;
+    --text: #2C2C28;
+    --muted: #7A7568;
+    --border: #E0D8CC;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--dark);
+    padding: 6mm 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1pt solid rgba(184,148,60,0.3);
+  }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20pt;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 0.04em;
+  }
+  .logo-text em { font-style: italic; color: var(--gold-light); }
+  .logo-sub {
+    font-size: 7pt;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-top: 1.5mm;
+  }
+  .header-contact {
+    font-size: 8pt;
+    color: rgba(255,255,255,0.5);
+    text-align: right;
+    line-height: 1.7;
+  }
+  .header-contact a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--dark);
+    padding: 14mm 8mm 12mm;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,148,60,0.07) 0%, transparent 60%);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28pt;
+    font-weight: 300;
+    color: white;
+    line-height: 1.1;
+    position: relative;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); display: block; }
+  .hero p {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.5);
+    margin-top: 3mm;
+    letter-spacing: 0.08em;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex;
+    gap: 6mm;
+    margin-top: 5mm;
+    position: relative;
+  }
+  .hero-badge span {
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.1em;
+  }
+  .hero-badge span::before { content: '·'; margin-right: 2mm; color: var(--gold); }
+
+  /* ── Main layout ── */
+  .form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8mm 5mm 16mm;
+  }
+
+  /* ── Section ── */
+  .form-section {
+    background: var(--white);
+    border: 0.3pt solid var(--border);
+    margin-bottom: 5mm;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    padding: 5mm 6mm;
+    border-bottom: 0.3pt solid var(--border);
+    background: var(--cream);
+  }
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 400;
+    color: var(--gold);
+    min-width: 7mm;
+    line-height: 1;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15pt;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .section-sub {
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 1mm;
+    letter-spacing: 0.04em;
+  }
+  .section-body { padding: 5mm 6mm; }
+
+  /* ── Option cards ── */
+  .option-group { margin-bottom: 5mm; }
+  .option-group:last-child { margin-bottom: 0; }
+  .option-label {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .badge {
+    font-size: 6.5pt;
+    letter-spacing: 0.15em;
+    padding: 1mm 2.5mm;
+    font-weight: 400;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .badge-incl { background: var(--dark); color: white; }
+  .badge-up { background: var(--gold); color: white; }
+  .badge-consult { background: #e8e0cc; color: var(--muted); }
+
+  .radio-grid {
+    display: grid;
+    gap: 2mm;
+  }
+  .radio-grid.cols2 { grid-template-columns: 1fr 1fr; }
+  .radio-grid.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .radio-card {
+    position: relative;
+    cursor: pointer;
+  }
+  .radio-card input[type="radio"],
+  .radio-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .radio-card-inner {
+    border: 0.5pt solid var(--border);
+    padding: 3.5mm 4mm;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8mm;
+    background: var(--white);
+    cursor: pointer;
+  }
+  .radio-card input:checked ~ .radio-card-inner {
+    border-color: var(--gold);
+    background: #fefaf3;
+  }
+  .rc-name {
+    font-size: 9pt;
+    font-weight: 400;
+    color: var(--dark);
+  }
+  .rc-price {
+    font-size: 7.5pt;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .rc-price.gold { color: var(--gold); font-weight: 500; }
+
+  /* ── Select dropdown ── */
+  .field-select {
+    width: 100%;
+    border: 0.5pt solid var(--border);
+    background: var(--white);
+    padding: 3mm 4mm;
+    font-family: 'Jost', sans-serif;
+    font-size: 9pt;
+    font-weight: 300;
+    color: var(--text);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7568' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 3.5mm center;
+    padding-right: 9mm;
+    cursor: pointer;
+  }
+  .field-select:focus { outline: none; border-color: var(--gold); }
+
+  /* ── Text input ── */
+  .field-input, .field-textarea {
+    width: 100%;
+    border: 0.5pt solid var(--border);
+    background: var(--white);
+    padding: 3mm 4mm;
+    font-family: 'Jost', sans-serif;
+    font-size: 9pt;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .field-input:focus, .field-textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .field-textarea { resize: vertical; min-height: 20mm; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .field-label {
+    font-size: 7.5pt;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5mm;
+    display: block;
+  }
+
+  /* ── Conditional blocks ── */
+  .conditional { display: none; margin-top: 3mm; }
+  .conditional.active { display: block; }
+
+  /* ── Insulation table ── */
+  .insul-table { display: grid; grid-template-columns: repeat(3,1fr); gap: 2mm; }
+  .insul-card {
+    border: 0.5pt solid var(--border);
+    padding: 3mm;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }
+  .insul-card.included { border-color: var(--gold); }
+  .insul-mm {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16pt;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .insul-desc { font-size: 6pt; color: var(--muted); margin-top: 1mm; line-height: 1.4; }
+  .insul-price { font-size: 7pt; color: var(--gold); margin-top: 1.5mm; font-weight: 500; }
+  .insul-card input { position: absolute; opacity: 0; }
+  .insul-card input:checked ~ .insul-inner { color: var(--gold); }
+
+  /* ── Services checkboxes ── */
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
+  .check-card {
+    position: relative;
+    cursor: pointer;
+  }
+  .check-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .check-inner {
+    border: 0.5pt solid var(--border);
+    padding: 3mm 4mm;
+    font-size: 8.5pt;
+    color: var(--text);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    cursor: pointer;
+  }
+  .check-inner::before {
+    content: '';
+    width: 4mm;
+    height: 4mm;
+    border: 0.5pt solid var(--border);
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .check-card input:checked ~ .check-inner {
+    border-color: var(--gold);
+    background: #fefaf3;
+  }
+  .check-card input:checked ~ .check-inner::before {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 0.3pt solid var(--border);
+    margin: 4mm 0;
+  }
+
+  /* ── Submit button ── */
+  .submit-wrap { padding: 4mm 0 0; }
+  .btn-submit {
+    width: 100%;
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 5mm 8mm;
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-submit:hover { background: #2a2a28; }
+  .btn-submit::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2pt;
+    background: var(--gold);
+  }
+  .submit-note {
+    font-size: 7pt;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 3mm;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Success message ── */
+  #success-msg {
+    display: none;
+    background: var(--dark);
+    color: white;
+    padding: 10mm 8mm;
+    text-align: center;
+    margin-bottom: 5mm;
+  }
+  #success-msg h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22pt;
+    font-weight: 300;
+  }
+  #success-msg h2 em { font-style: italic; color: var(--gold-light); }
+  #success-msg p { font-size: 9pt; color: rgba(255,255,255,0.6); margin-top: 3mm; line-height: 1.7; }
+
+  /* ── Footer ── */
+  .site-footer {
+    background: var(--dark);
+    padding: 5mm 8mm;
+    text-align: center;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.07em;
+    line-height: 1.9;
+  }
+  .site-footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 500px) {
+    .radio-grid.cols3 { grid-template-columns: 1fr 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .check-grid { grid-template-columns: 1fr; }
+    .insul-table { grid-template-columns: 1fr; }
+  }
+
+  /* ── Note box ── */
+  .note-box {
+    background: var(--cream);
+    border-left: 2pt solid var(--gold);
+    padding: 2.5mm 4mm;
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 3mm;
+    line-height: 1.6;
+  }
+  .note-box strong { color: var(--dark); font-weight: 500; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">NIDO45</div>
-  <div class="sub">New Generation Homes</div>
+<!-- HEADER -->
+<header class="site-header">
+  <div>
+    <div class="logo-text">Nido<em>45</em>.com</div>
+    <div class="logo-sub">New Generation Homes</div>
+  </div>
+  <div class="header-contact">
+    <a href="tel:+34645476491">+34 645 476 491</a><br>
+    <a href="mailto:nido45spain@gmail.com">nido45spain@gmail.com</a>
+  </div>
 </header>
 
-<!-- SUCCESS -->
-<div id="success">
-  <div class="ic">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-      <polyline points="4,16 12,24 28,8" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <h1>¡Solicitud enviada!<br><em>Gracias.</em></h1>
-  <div class="gl"></div>
-  <p>El equipo NIDO45 ha recibido tu solicitud y te contactará en menos de <strong style="color:#fff">48 horas</strong>.<br><br>
-  <span style="color:#C9A84C;font-weight:500">nido45spain@gmail.com · +34 645 476 491</span></p>
-  <div class="badge">Sin compromiso · Válido 30 días</div>
-</div>
-
 <!-- HERO -->
-<div id="hero" class="hero">
-  <h1>Tu casa ya tiene forma.<br><em>Ponle precio.</em></h1>
-  <div class="gl"></div>
-  <p>Rellena el formulario. En 48 horas recibes tu presupuesto.<br>Sin compromiso · Válido 30 días.</p>
+<div class="hero">
+  <h1>Tu casa ya tiene forma.<em>Ponle precio.</em></h1>
+  <p>Rellena el formulario · En 48 horas recibes tu presupuesto</p>
+  <div class="hero-badge">
+    <span>Sin compromiso</span>
+    <span>Válido 30 días</span>
+    <span>Respuesta en 48 h</span>
+  </div>
 </div>
 
-<!-- FORM -->
-<form id="frm" onsubmit="enviar(event)">
+<!-- MAIN FORM WRAP -->
+<div class="form-wrap">
 
-  <!-- 01 MODELO -->
-  <div class="sec">
-    <div class="sn">01</div><div class="st">Tu modelo</div>
-    <div class="sh">Selecciona el que más te interesa.</div>
-    <div class="g2">
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Gorrión — desde 6.000 €" required><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Gorrión<span class="price">desde 6.000 €</span></span></label>
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Flamenco — desde 15.000 €/módulo"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Flamenco<span class="price">desde 15.000 €/módulo</span></span></label>
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Halcón — desde 36.000 €"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Halcón<span class="price">desde 36.000 €</span></span></label>
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Águila — desde 60.000 €"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Águila<span class="price">desde 60.000 €</span></span></label>
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Colibrí — desde 36.000 €"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Colibrí<span class="price">desde 36.000 €</span></span></label>
-      <label class="opt" onclick="hl(this)"><input type="radio" name="modelo" value="El Cuco — desde 15.000 €"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>El Cuco<span class="price">desde 15.000 €</span></span></label>
-    </div>
-    <div class="fi"><label>Nº módulos o m² (opcional)</label><input type="text" name="modulos" placeholder="ej. 2 módulos / 30 m²"></div>
+  <!-- Success message -->
+  <div id="success-msg">
+    <h2>¡Solicitud enviada! <em>Gracias.</em></h2>
+    <p>El equipo NIDO45 ha recibido tu solicitud y te contactará en menos de <strong style="color:var(--gold-light)">48 horas</strong>.<br>
+    nido45spain@gmail.com · +34 645 476 491<br>
+    Sin compromiso · Válido 30 días</p>
   </div>
 
-  <!-- 02 SUELO -->
-  <div class="sec">
-    <div class="sn">02</div><div class="st">Tu suelo</div>
-    <div class="sh">SPC tiene coste adicional de 9,60 €/m².</div>
-    <div class="g2">
-      <label class="opt" onclick="hl(this);sc()"><input type="radio" name="suelo" value="PVC 1,6 mm (incluido)" required><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>PVC 1,6 mm<span class="price">Incluido</span></span></label>
-      <label class="opt" onclick="hl(this);sc()"><input type="radio" name="suelo" value="SPC 4 mm — 9,60 €/m²"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>SPC 4 mm<span class="price">9,60 €/m²</span></span></label>
-    </div>
-    <div class="cond" id="cs-suelo">
-      <div class="fi"><label>Color SPC</label>
-        <select name="suelo_color"><option value="">— Elige color —</option><option>Gris claro</option><option>Madera miel</option><option>Gris cálido</option><option>Gris frío</option><option>Madera natural</option><option>Madera oscura</option><option>Gris azulado</option><option>Caoba</option></select>
+  <form id="nido-form" onsubmit="submitForm(event)">
+
+    <!-- ══ 01 MODELO ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <div>
+          <div class="section-title">Tu modelo</div>
+          <div class="section-sub">Selecciona el que más te interesa</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="radio-grid cols2">
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Gorrión · 6.000 €" required>
+            <div class="radio-card-inner">
+              <div class="rc-name">El Gorrión</div>
+              <div class="rc-price">Desde 6.000 € · Flat Pack · 15 m²</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Flamenco · 15.000 €/módulo">
+            <div class="radio-card-inner">
+              <div class="rc-name">El Flamenco</div>
+              <div class="rc-price">Desde 15.000 €/módulo · Modular · desde 20 m²</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Halcón · 36.000 €">
+            <div class="radio-card-inner">
+              <div class="rc-name">El Halcón</div>
+              <div class="rc-price">Desde 36.000 € · 90 m² · 3 dorm.</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Águila · 60.000 €">
+            <div class="radio-card-inner">
+              <div class="rc-name">El Águila</div>
+              <div class="rc-price">Desde 60.000 € · 150 m² · Villa lujo</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Colibrí · 36.000 €">
+            <div class="radio-card-inner">
+              <div class="rc-name">El Colibrí</div>
+              <div class="rc-price">Desde 36.000 € · High-Tech · 27–38 m²</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="modelo" value="Cuco 36 · 15.000 €">
+            <div class="radio-card-inner">
+              <div class="rc-name">El Cuco 36</div>
+              <div class="rc-price">Desde 15.000 € · Móvil · 36 m² · 2 dorm.</div>
+            </div>
+          </label>
+          <label class="radio-card" style="grid-column: 1 / -1;">
+            <input type="radio" name="modelo" value="Cuco 68 · 25.000 €">
+            <div class="radio-card-inner" style="flex-direction:row;align-items:center;justify-content:space-between;">
+              <div class="rc-name">El Cuco 68</div>
+              <div class="rc-price">Desde 25.000 € · Móvil · 68 m² · 3 dorm.</div>
+            </div>
+          </label>
+        </div>
+        <div style="margin-top:4mm;">
+          <label class="field-label">Nº módulos o m² que buscas (opcional)</label>
+          <input type="text" name="modulos" class="field-input" placeholder="Ej: 3 módulos · 60 m²">
+        </div>
       </div>
     </div>
-    <div class="dv"></div>
-    <label class="opt" onclick="hl(this)"><input type="checkbox" name="radiante" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Suelo radiante de grafeno<span class="price">precio a consultar</span></span></label>
-  </div>
 
-  <!-- 03 PAREDES -->
-  <div class="sec">
-    <div class="sn">03</div><div class="st">Paredes interiores</div>
-    <div class="sh">Bamboo 8,10 €/m² · Carved Metal según color.</div>
-    <div class="g2">
-      <label class="opt" onclick="hl(this);sc()"><input type="radio" name="pared" value="Bamboo Fiber Board — 8,10 €/m²" required><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Bamboo Fiber Board<span class="price">8,10 €/m²</span></span></label>
-      <label class="opt" onclick="hl(this);sc()"><input type="radio" name="pared" value="Carved Metal Board — según color"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Carved Metal Board<span class="price">según color</span></span></label>
-    </div>
-    <div class="cond" id="cs-bamboo">
-      <div class="fi"><label>Color Bamboo</label>
-        <select name="pared_color_b"><option value="">— Elige color —</option><option>Blanco</option><option>Lino</option><option>Beige</option><option>Roble gris</option><option>Gris oscuro</option><option>Gris lino</option><option>Nogal</option><option>Mármol</option><option>Antracita</option></select>
+    <!-- ══ 02 SUELO ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div>
+          <div class="section-title">Tu suelo</div>
+          <div class="section-sub">Lo pisas cada día. Merece que lo elijas tú.</div>
+        </div>
+      </div>
+      <div class="section-body">
+
+        <div class="option-group">
+          <div class="option-label">Tarima</div>
+          <div class="radio-grid cols2">
+            <label class="radio-card">
+              <input type="radio" name="suelo" value="PVC 1,6 mm (Incluido)" checked>
+              <div class="radio-card-inner">
+                <div class="rc-name">PVC 1,6 mm</div>
+                <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span></div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="suelo" value="SPC 4 mm (9 €/m²)" id="suelo-spc">
+              <div class="radio-card-inner">
+                <div class="rc-name">SPC 4 mm</div>
+                <div class="rc-price gold">MEJORA · 9 €/m²</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- SPC colors — conditional -->
+        <div id="spc-colors" class="conditional">
+          <label class="field-label">Color SPC</label>
+          <select name="color_spc" class="field-select">
+            <option value="">— Elige color —</option>
+            <option>D1001 · Gris Roble</option>
+            <option>D1002 · Caoba</option>
+            <option>D1003 · Roble Natural</option>
+            <option>D1004 · Madera Miel</option>
+            <option>D1005 · Gris Ceniza</option>
+            <option>D1006 · Blanco Nórdico</option>
+            <option>D1007 · Nogal Oscuro</option>
+            <option>D1008 · Gris Piedra</option>
+          </select>
+        </div>
+
+        <hr class="divider">
+
+        <div class="option-group">
+          <div class="option-label">Suelo radiante</div>
+          <div class="radio-grid cols2">
+            <label class="radio-card">
+              <input type="radio" name="radiante" value="Sin suelo radiante" checked>
+              <div class="radio-card-inner">
+                <div class="rc-name">Sin suelo radiante</div>
+                <div class="rc-price">Solo tarima</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="radiante" value="Suelo radiante de agua (40 €/m²)">
+              <div class="radio-card-inner">
+                <div class="rc-name">Suelo radiante de agua</div>
+                <div class="rc-price gold">MEJORA · 40 €/m²</div>
+              </div>
+            </label>
+          </div>
+          <div class="note-box">Tuberías de agua instaladas en fábrica sobre base aislante · Termostato incluido · Compatible con PVC y SPC</div>
+        </div>
+
       </div>
     </div>
-    <div class="cond" id="cs-metal">
-      <div class="fi"><label>Color Carved Metal</label>
-        <select name="pared_color_m"><option value="">— Elige color —</option><option>Gris claro</option><option>Antracita</option><option>Madera roble</option><option>Wengué</option><option>Madera rojiza</option><option>Pizarra</option><option>Ladrillo blanco</option><option>Piedra gris</option><option>Corteza</option></select>
+
+    <!-- ══ 03 AISLAMIENTO PAREDES ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div>
+          <div class="section-title">Aislamiento térmico de paredes</div>
+          <div class="section-sub">El panel estructural incorpora aislamiento integrado</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="insul-table">
+          <label class="radio-card">
+            <input type="radio" name="aislamiento" value="50 mm (Incluido)" checked>
+            <div class="radio-card-inner insul-card included">
+              <div class="insul-mm">50 mm</div>
+              <div class="insul-desc">Estándar · EPS integrado<br>Clima mediterráneo</div>
+              <div class="insul-price">Incluido</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="aislamiento" value="75 mm (A consultar)">
+            <div class="radio-card-inner insul-card">
+              <div class="insul-mm">75 mm</div>
+              <div class="insul-desc">Upgrade · Interior<br>Montaña media</div>
+              <div class="insul-price">A consultar</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="aislamiento" value="100 mm (A consultar)">
+            <div class="radio-card-inner insul-card">
+              <div class="insul-mm">100 mm</div>
+              <div class="insul-desc">Premium · Zonas frías<br>Clase A máxima</div>
+              <div class="insul-price">A consultar</div>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- 04 FACHADA -->
-  <div class="sec">
-    <div class="sn">04</div><div class="st">Fachada exterior</div>
-    <div class="sh">Acabado, aislamiento, ventana y puerta.</div>
-    <div class="fi"><label>Acabado exterior</label>
-      <select name="fachada_acabado"><option value="">— Elige —</option><option>Blanco (incluido)</option><option>Gris (incluido)</option><option>Efecto madera (incluido)</option></select>
-    </div>
-    <div class="fi"><label>Aislamiento</label>
-      <div class="g3" style="margin-top:5px">
-        <label class="opt" style="font-size:11px" onclick="hl(this)"><input type="radio" name="aislamiento" value="50 mm estándar (incluido)" required><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>50 mm<span class="price">Incluido</span></span></label>
-        <label class="opt" style="font-size:11px" onclick="hl(this)"><input type="radio" name="aislamiento" value="75 mm upgrade"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>75 mm<span class="price">Upgrade</span></span></label>
-        <label class="opt" style="font-size:11px" onclick="hl(this)"><input type="radio" name="aislamiento" value="100 mm premium"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>100 mm<span class="price">Premium</span></span></label>
+    <!-- ══ 04 PAREDES INTERIORES ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <div>
+          <div class="section-title">Acabado de paredes interiores</div>
+          <div class="section-sub">Lo que te rodea define cómo te sientes en casa</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="radio-grid">
+          <label class="radio-card">
+            <input type="radio" name="paredes" value="Panel blanco de serie (Incluido)" checked id="pared-base">
+            <div class="radio-card-inner">
+              <div class="rc-name">Panel blanco de serie</div>
+              <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Acabado blanco liso · base estándar de fábrica</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="paredes" value="Mejora A — Bamboo Fiber Board (9 €/m²)" id="pared-bamboo">
+            <div class="radio-card-inner">
+              <div class="rc-name">Mejora A — Bamboo Fiber Board</div>
+              <div class="rc-price gold">MEJORA · 9 €/m² · Panel 8 mm · Antihumedad · 4 colores</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="paredes" value="Mejora B — Carbon Crystal Board (9 €/m²)" id="pared-carbon">
+            <div class="radio-card-inner">
+              <div class="rc-name">Mejora B — Carbon Crystal Board</div>
+              <div class="rc-price gold">MEJORA · 9 €/m² · Aspecto piedra o madera premium · 9 colores</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Bamboo colors — conditional -->
+        <div id="bamboo-colors" class="conditional">
+          <label class="field-label" style="margin-top:3mm;">Color Bamboo Fiber Board</label>
+          <select name="color_bamboo" class="field-select">
+            <option value="">— Elige color —</option>
+            <option>Blanco lino</option>
+            <option>Gris piedra</option>
+            <option>Roble claro</option>
+            <option>Gris arena</option>
+          </select>
+        </div>
+
+        <!-- Carbon colors — conditional -->
+        <div id="carbon-colors" class="conditional">
+          <label class="field-label" style="margin-top:3mm;">Color Carbon Crystal Board</label>
+          <select name="color_carbon" class="field-select">
+            <option value="">— Elige color —</option>
+            <option>Naranja</option>
+            <option>Mármol blanco</option>
+            <option>Travertino</option>
+            <option>Wengué</option>
+            <option>Roble natural</option>
+            <option>Madera clara</option>
+            <option>Beige miel</option>
+            <option>Blanco neutro</option>
+            <option>Gris perla</option>
+          </select>
+        </div>
+
       </div>
     </div>
-    <div class="fi"><label>Ventana</label>
-      <select name="ventana"><option value="">— Elige —</option><option>PVC corredera doble cristal (incluida)</option><option>Aluminio (upgrade)</option><option>Rotura puente térmico Low-E + persiana (premium)</option></select>
+
+    <!-- ══ 05 FACHADA EXTERIOR ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <div>
+          <div class="section-title">Fachada exterior</div>
+          <div class="section-sub">Panel Metal Carved 16 mm · Lo primero que ven. Lo último que olvidan.</div>
+        </div>
+      </div>
+      <div class="section-body">
+
+        <div class="option-group">
+          <div class="option-label">Color de fachada</div>
+          <div class="radio-grid cols2">
+            <label class="radio-card">
+              <input type="radio" name="fachada_color" value="Blanco (Incluido)" checked>
+              <div class="radio-card-inner">
+                <div class="rc-name">Blanco</div>
+                <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Todos los modelos</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="fachada_color" value="Otro color (9 €/m²)" id="fachada-otro">
+              <div class="radio-card-inner">
+                <div class="rc-name">Otro color o textura</div>
+                <div class="rc-price gold">MEJORA · 9 €/m² · ver carta</div>
+              </div>
+            </label>
+          </div>
+          <div class="note-box"><strong>Gorrión · Halcón · Águila · Cuco 36 · Cuco 68</strong> — Acceso a toda la carta de colores<br><strong>Flamenco · Colibrí</strong> — Siempre en blanco (sin opción de color)</div>
+        </div>
+
+        <!-- Facade color selector — conditional -->
+        <div id="fachada-color-select" class="conditional">
+          <label class="field-label">Referencia de color</label>
+          <select name="fachada_ref" class="field-select">
+            <option value="">— Elige referencia —</option>
+            <optgroup label="Serie ladrillo">
+              <option>BZ-202 · Ladrillo gris claro</option>
+              <option>BZ-101 · Ladrillo blanco ángel</option>
+              <option>BZ-102 · Ladrillo blanco marfil</option>
+              <option>BZ-104 · Ladrillo gris plata</option>
+              <option>BZ-302 · Ladrillo arena marrón</option>
+              <option>BZ-201 · Ladrillo gris oscuro</option>
+              <option>BZ-504 · Ladrillo crema</option>
+              <option>BZ-203 · Ladrillo negro mate</option>
+              <option>BZ-507 · Ladrillo naranja</option>
+            </optgroup>
+            <optgroup label="Serie madera">
+              <option>MZ-0301 · Madera panga-panga</option>
+              <option>PZ-0302 · Madera nogal oscuro</option>
+            </optgroup>
+            <option value="otro">Otro — lo indico en notas</option>
+          </select>
+        </div>
+
+        <hr class="divider">
+
+        <div class="option-group">
+          <div class="option-label">Ventanas</div>
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="ventanas" value="PVC corredera doble cristal (Incluida)" checked>
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">PVC corredera · doble cristal 930×1.200 mm</div>
+                <div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="ventanas" value="Aluminio (Upgrade)">
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">Aluminio · Mayor durabilidad y estética</div>
+                <div class="rc-price gold">UPGRADE</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="ventanas" value="Rotura puente térmico Low-E + persiana (Premium)">
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">RPT Low-E · persiana + mosquitera</div>
+                <div class="rc-price gold">PREMIUM</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="option-group">
+          <div class="option-label">Puerta de acceso</div>
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="puerta" value="Acero 50 mm (Incluida)" checked>
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">Acero 50 mm · 970×1.970 mm · doble cara</div>
+                <div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="puerta" value="Doble vidrio templado + aluminio (Upgrade)">
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">Doble vidrio templado + aluminio</div>
+                <div class="rc-price gold">UPGRADE</div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="puerta" value="Corredera aluminio panorámica (Upgrade)">
+              <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
+                <div class="rc-name">Corredera aluminio panorámica</div>
+                <div class="rc-price gold">UPGRADE</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="fi"><label>Puerta de acceso</label>
-      <select name="puerta"><option value="">— Elige —</option><option>Acero 50 mm (incluida)</option><option>Doble vidrio templado (upgrade)</option><option>Corredera aluminio panorámica (upgrade)</option></select>
+
+    <!-- ══ 06 SERVICIOS ADICIONALES ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <div>
+          <div class="section-title">Servicios adicionales</div>
+          <div class="section-sub">Márcalos — te los presupuestamos aparte</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="check-grid">
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Búsqueda de terreno">
+            <div class="check-inner">Búsqueda de terreno</div>
+          </label>
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Transporte a parcela">
+            <div class="check-inner">Transporte a parcela</div>
+          </label>
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Montaje e instalación">
+            <div class="check-inner">Montaje e instalación</div>
+          </label>
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Licencia de obra">
+            <div class="check-inner">Licencia de obra</div>
+          </label>
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Cimentación y terreno">
+            <div class="check-inner">Cimentación y terreno</div>
+          </label>
+          <label class="check-card">
+            <input type="checkbox" name="servicios" value="Acometidas (luz/agua)">
+            <div class="check-inner">Acometidas (luz/agua)</div>
+          </label>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- 05 SERVICIOS -->
-  <div class="sec">
-    <div class="sn">05</div><div class="st">Servicios adicionales</div>
-    <div class="sh">Márcalos — te los presupuestamos aparte.</div>
-    <div class="g2">
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_terreno" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Búsqueda de terreno</span></label>
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_transporte" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Transporte a parcela</span></label>
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_montaje" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Montaje e instalación</span></label>
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_licencia" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Licencia de obra</span></label>
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_ciment" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Cimentación y terreno</span></label>
-      <label class="opt" onclick="hl(this)"><input type="checkbox" name="s_acomet" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>Acometidas (luz/agua)</span></label>
+    <!-- ══ 07 PARCELA ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <div>
+          <div class="section-title">Tu parcela</div>
+          <div class="section-sub">Para calcular transporte y cimentación</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="option-group">
+          <label class="field-label">Dirección o municipio</label>
+          <input type="text" name="parcela" class="field-input" placeholder="Ej: Vélez-Málaga, Málaga">
+        </div>
+        <div class="option-group">
+          <label class="field-label">Referencia catastral (opcional)</label>
+          <input type="text" name="catastral" class="field-input" placeholder="Ej: 29XXX0001XXXXXXXX">
+        </div>
+        <label class="check-card" style="display:block;margin-top:2mm;">
+          <input type="checkbox" name="sin_terreno" value="Sí">
+          <div class="check-inner">No tengo terreno — quiero ayuda para encontrarlo</div>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- 06 PARCELA -->
-  <div class="sec">
-    <div class="sn">06</div><div class="st">Tu parcela</div>
-    <div class="sh">Para calcular transporte y cimentación.</div>
-    <div class="fi"><label>Dirección o municipio</label><input type="text" name="parcela" placeholder="ej. Cajiz, Málaga"></div>
-    <div class="fi"><label>Ref. catastral (opcional)</label><input type="text" name="catastro" placeholder="ej. 29XXX..."></div>
-    <div class="dv"></div>
-    <label class="opt" onclick="hl(this)"><input type="checkbox" name="sin_terreno" value="si"><span class="cb"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><polyline class="ck" points="1,4.5 3.5,7 8,1.5" stroke="#1A2E1A" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span>No tengo terreno — quiero ayuda para encontrarlo</span></label>
-  </div>
+    <!-- ══ 08 DATOS CONTACTO ══ -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <div>
+          <div class="section-title">Tus datos</div>
+          <div class="section-sub">Solo para enviarte el presupuesto</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="field-row" style="margin-bottom:3mm;">
+          <div>
+            <label class="field-label">Nombre completo *</label>
+            <input type="text" name="nombre" class="field-input" required placeholder="Tu nombre">
+          </div>
+          <div>
+            <label class="field-label">Teléfono *</label>
+            <input type="tel" name="telefono" class="field-input" required placeholder="+34 6XX XXX XXX">
+          </div>
+        </div>
+        <div style="margin-bottom:3mm;">
+          <label class="field-label">Email *</label>
+          <input type="email" name="email" class="field-input" required placeholder="tu@email.com">
+        </div>
+        <div style="margin-bottom:3mm;">
+          <label class="field-label">Horario para llamar</label>
+          <select name="horario" class="field-select">
+            <option value="">— Sin preferencia —</option>
+            <option>Mañanas (9–13 h)</option>
+            <option>Tardes (15–19 h)</option>
+            <option>Cualquier hora</option>
+            <option>Solo WhatsApp</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Notas adicionales</label>
+          <textarea name="notas" class="field-textarea" placeholder="Cuéntanos algo más sobre tu proyecto..."></textarea>
+        </div>
 
-  <!-- 07 DATOS -->
-  <div class="sec">
-    <div class="sn">07</div><div class="st">Tus datos</div>
-    <div class="sh">Solo para enviarte el presupuesto.</div>
-    <div class="fi"><label>Nombre completo *</label><input type="text" name="nombre" required placeholder="Tu nombre"></div>
-    <div class="fi"><label>Teléfono *</label><input type="tel" name="telefono" required placeholder="+34 6XX XXX XXX"></div>
-    <div class="fi"><label>Email *</label><input type="email" name="email" required placeholder="tu@email.com"></div>
-    <div class="fi"><label>Horario para llamar</label><input type="text" name="horario" placeholder="Mañanas / Tardes / Cualquiera"></div>
-    <div class="fi"><label>Notas adicionales</label><textarea name="notas" placeholder="Proyecto, dudas, boceto..."></textarea></div>
-  </div>
+        <div class="submit-wrap">
+          <button type="submit" class="btn-submit" id="submit-btn">QUIERO MI PRESUPUESTO</button>
+          <div class="submit-note">
+            En 48 horas recibes respuesta · Sin compromiso · Válido 30 días<br>
+            Datos protegidos RGPD · Isla Sofía SLU · NIF B26607044
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <button type="submit" class="btn" id="btn">QUIERO MI PRESUPUESTO</button>
-  <p class="note">En 48 horas recibes respuesta · Sin compromiso · Válido 30 días<br>Datos protegidos RGPD · Isla Sofía SLU · NIF B26607044</p>
-</form>
+  </form>
+</div>
 
-<footer>
+<!-- FOOTER -->
+<footer class="site-footer">
   <a href="https://nido45.com">nido45.com</a> · nido45spain@gmail.com · +34 645 476 491<br>
-  Isla Sofía SLU · NIF B26607044 · © 2026 NIDO45
+  Isla Sofía SLU · NIF B26607044 · El Capitán, Almayate (Málaga) · © 2026 NIDO45
 </footer>
 
 <script>
-var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-KV0OsgcEw1naO-_7mggaZ-aEgjRqdxFCVxYO7iTEhT2Rcp_8aOngZ25PXSNxvvs/exec";
+  // ── GOOGLE APPS SCRIPT URL ──
+  // Reemplaza esta URL con tu endpoint de Google Apps Script actual:
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-KV0OsgcEw1naO-_7mggaZ-aEgjRqdxFCVxYO7iTEhT2Rcp_8aOngZ25PXSNxvvs/exec';
 
-function enviar(e) {
-  e.preventDefault();
-  var btn = document.getElementById('btn');
-  btn.textContent = 'ENVIANDO...';
-  btn.disabled = true;
-
-  var form = document.getElementById('frm');
-  var params = new URLSearchParams();
-
-  form.querySelectorAll('input, textarea, select').forEach(function(inp) {
-    if (!inp.name) return;
-    if (inp.type === 'radio' && inp.checked) params.set(inp.name, inp.value);
-    else if (inp.type === 'checkbox' && inp.checked) params.set(inp.name, inp.value);
-    else if (inp.type !== 'radio' && inp.type !== 'checkbox') params.set(inp.name, inp.value);
+  // ── Conditional: SPC colors ──
+  document.querySelectorAll('input[name="suelo"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('spc-colors').classList.toggle(
+        'active', r.value.includes('SPC') && r.checked
+      );
+    });
   });
 
-  // Usamos no-cors para evitar bloqueo CORS — el email se envía igualmente
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: params.toString()
-  })
-  .then(function() {
-    mostrarExito();
-  })
-  .catch(function() {
-    mostrarExito();
+  // ── Conditional: Wall colors ──
+  document.querySelectorAll('input[name="paredes"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('bamboo-colors').classList.toggle(
+        'active', document.getElementById('pared-bamboo').checked
+      );
+      document.getElementById('carbon-colors').classList.toggle(
+        'active', document.getElementById('pared-carbon').checked
+      );
+    });
   });
-}
 
-function mostrarExito() {
-  document.getElementById('frm').style.display = 'none';
-  document.getElementById('hero').style.display = 'none';
-  var s = document.getElementById('success');
-  s.style.display = 'flex';
-  window.scrollTo(0, 0);
-}
+  // ── Conditional: Facade color selector ──
+  document.querySelectorAll('input[name="fachada_color"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('fachada-color-select').classList.toggle(
+        'active', document.getElementById('fachada-otro').checked
+      );
+    });
+  });
 
-function hl(el) {
-  var inp = el.querySelector('input');
-  if (!inp) return;
-  setTimeout(function() {
-    var on = inp.checked;
-    el.style.borderColor = on ? '#C9A84C' : 'rgba(255,255,255,.1)';
-    el.style.background = on ? 'rgba(201,168,76,.1)' : '';
-    el.style.color = on ? '#C9A84C' : '#F8F5EF';
-    var cb = el.querySelector('.cb');
-    if (cb) { cb.style.borderColor = on ? '#C9A84C' : 'rgba(255,255,255,.2)'; cb.style.background = on ? '#C9A84C' : ''; }
-    var ck = el.querySelector('.ck');
-    if (ck) ck.style.display = on ? 'block' : 'none';
-    if (inp.type === 'radio') {
-      document.querySelectorAll('input[name=' + inp.name + ']').forEach(function(o) {
-        if (o !== inp) {
-          var ol = o.closest('label');
-          if (!ol) return;
-          ol.style.borderColor = 'rgba(255,255,255,.1)';
-          ol.style.background = '';
-          ol.style.color = '#F8F5EF';
-          var cb2 = ol.querySelector('.cb');
-          var ck2 = ol.querySelector('.ck');
-          if (cb2) { cb2.style.borderColor = 'rgba(255,255,255,.2)'; cb2.style.background = ''; }
-          if (ck2) ck2.style.display = 'none';
-        }
-      });
+  // ── SUBMIT ──
+  async function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'ENVIANDO…';
+    btn.disabled = true;
+
+    const form = document.getElementById('nido-form');
+    const fd = new FormData(form);
+
+    // Collect checkboxes (servicios)
+    const servicios = [...form.querySelectorAll('input[name="servicios"]:checked')]
+      .map(c => c.value).join(', ');
+    if (servicios) fd.set('servicios', servicios);
+
+    try {
+      await fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' });
+      form.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      btn.textContent = 'QUIERO MI PRESUPUESTO';
+      btn.disabled = false;
+      alert('Error al enviar. Por favor inténtalo de nuevo o escríbenos a nido45spain@gmail.com');
     }
-  }, 10);
-}
-
-function sc() {
-  setTimeout(function() {
-    var su = document.querySelector('input[name=suelo]:checked');
-    var pa = document.querySelector('input[name=pared]:checked');
-    var cs = document.getElementById('cs-suelo');
-    var cb = document.getElementById('cs-bamboo');
-    var cm = document.getElementById('cs-metal');
-    if (cs) cs.style.display = (su && su.value.indexOf('SPC') > -1) ? 'block' : 'none';
-    if (cb) cb.style.display = (pa && pa.value.indexOf('Bamboo') > -1) ? 'block' : 'none';
-    if (cm) cm.style.display = (pa && pa.value.indexOf('Carved') > -1) ? 'block' : 'none';
-  }, 10);
-}
+  }
 </script>
 </body>
 </html>
