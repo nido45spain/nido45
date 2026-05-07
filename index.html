@@ -997,7 +997,7 @@
     if (servicios) fd.set('servicios', servicios);
 
     try {
-      await fetch(SCRIPT_URL, { method: 'POST', body: new URLSearchParams(fd) });
+     await fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' });
       form.style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
