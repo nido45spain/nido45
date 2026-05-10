@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NIDO45 formulario v2.3 / 2026-05-10 / cache-bust -->
+<!-- NIDO45 formulario v2.4 / 2026-05-10 / revert to FormData -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -208,22 +208,14 @@
   .badge-up { background: var(--gold); color: white; }
   .badge-consult { background: #e8e0cc; color: var(--muted); }
 
-  .radio-grid {
-    display: grid;
-    gap: 2mm;
-  }
+  .radio-grid { display: grid; gap: 2mm; }
   .radio-grid.cols2 { grid-template-columns: 1fr 1fr; }
   .radio-grid.cols3 { grid-template-columns: 1fr 1fr 1fr; }
 
-  .radio-card {
-    position: relative;
-    cursor: pointer;
-  }
+  .radio-card { position: relative; cursor: pointer; }
   .radio-card input[type="radio"],
   .radio-card input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    width: 0; height: 0;
+    position: absolute; opacity: 0; width: 0; height: 0;
   }
   .radio-card-inner {
     border: 0.5pt solid var(--border);
@@ -239,19 +231,10 @@
     border-color: var(--gold);
     background: #fefaf3;
   }
-  .rc-name {
-    font-size: 9pt;
-    font-weight: 400;
-    color: var(--dark);
-  }
-  .rc-price {
-    font-size: 7.5pt;
-    color: var(--muted);
-    letter-spacing: 0.03em;
-  }
+  .rc-name { font-size: 9pt; font-weight: 400; color: var(--dark); }
+  .rc-price { font-size: 7.5pt; color: var(--muted); letter-spacing: 0.03em; }
   .rc-price.gold { color: var(--gold); font-weight: 500; }
 
-  /* ── Select dropdown ── */
   .field-select {
     width: 100%;
     border: 0.5pt solid var(--border);
@@ -270,7 +253,6 @@
   }
   .field-select:focus { outline: none; border-color: var(--gold); }
 
-  /* ── Text input ── */
   .field-input, .field-textarea {
     width: 100%;
     border: 0.5pt solid var(--border);
@@ -281,10 +263,7 @@
     font-weight: 300;
     color: var(--text);
   }
-  .field-input:focus, .field-textarea:focus {
-    outline: none;
-    border-color: var(--gold);
-  }
+  .field-input:focus, .field-textarea:focus { outline: none; border-color: var(--gold); }
   .field-textarea { resize: vertical; min-height: 20mm; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
   .field-label {
@@ -297,11 +276,9 @@
     display: block;
   }
 
-  /* ── Conditional blocks ── */
   .conditional { display: none; margin-top: 3mm; }
   .conditional.active { display: block; }
 
-  /* ── Insulation table ── */
   .insul-table { display: grid; grid-template-columns: repeat(3,1fr); gap: 2mm; }
   .insul-card {
     border: 0.5pt solid var(--border);
@@ -311,25 +288,14 @@
     position: relative;
   }
   .insul-card.included { border-color: var(--gold); }
-  .insul-mm {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16pt;
-    color: var(--dark);
-    line-height: 1;
-  }
+  .insul-mm { font-family: 'Cormorant Garamond', serif; font-size: 16pt; color: var(--dark); line-height: 1; }
   .insul-desc { font-size: 6pt; color: var(--muted); margin-top: 1mm; line-height: 1.4; }
   .insul-price { font-size: 7pt; color: var(--gold); margin-top: 1.5mm; font-weight: 500; }
   .insul-card input { position: absolute; opacity: 0; }
   .insul-card input:checked ~ .insul-inner { color: var(--gold); }
 
-  /* ── Divider ── */
-  .divider {
-    border: none;
-    border-top: 0.3pt solid var(--border);
-    margin: 4mm 0;
-  }
+  .divider { border: none; border-top: 0.3pt solid var(--border); margin: 4mm 0; }
 
-  /* ── Submit button ── */
   .submit-wrap { padding: 4mm 0 0; }
   .btn-submit {
     width: 100%;
@@ -364,7 +330,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* ── Success message ── */
   #success-msg {
     display: none;
     background: var(--dark);
@@ -373,15 +338,10 @@
     text-align: center;
     margin-bottom: 5mm;
   }
-  #success-msg h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22pt;
-    font-weight: 300;
-  }
+  #success-msg h2 { font-family: 'Cormorant Garamond', serif; font-size: 22pt; font-weight: 300; }
   #success-msg h2 em { font-style: italic; color: var(--gold-light); }
   #success-msg p { font-size: 9pt; color: rgba(255,255,255,0.6); margin-top: 3mm; line-height: 1.7; }
 
-  /* ── Footer ── */
   .site-footer {
     background: var(--dark);
     padding: 5mm 8mm;
@@ -393,7 +353,6 @@
   }
   .site-footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
 
-  /* ── Responsive ── */
   @media (max-width: 500px) {
     .radio-grid.cols3 { grid-template-columns: 1fr 1fr; }
     .field-row { grid-template-columns: 1fr; }
@@ -401,7 +360,6 @@
     .lem-banner-inner { flex-direction: column; align-items: center; gap: 2mm; }
   }
 
-  /* ── Note box ── */
   .note-box {
     background: var(--cream);
     border-left: 2pt solid var(--gold);
@@ -416,7 +374,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div>
     <div class="logo-text">Nido<em>45</em>.com</div>
@@ -428,7 +385,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Tu casa ya tiene forma.<em>Ponle precio.</em></h1>
   <p>Rellena el formulario · En 48 horas recibes tu presupuesto llave en mano</p>
@@ -439,7 +395,6 @@
   </div>
 </div>
 
-<!-- LLAVE EN MANO BANNER -->
 <div class="lem-banner">
   <div class="lem-banner-inner">
     <div class="lem-item">Transporte al puerto más cercano</div>
@@ -451,10 +406,8 @@
   </div>
 </div>
 
-<!-- MAIN FORM WRAP -->
 <div class="form-wrap">
 
-  <!-- Success message -->
   <div id="success-msg">
     <h2>¡Solicitud enviada! <em>Gracias.</em></h2>
     <p>El equipo NIDO45 ha recibido tu solicitud y te contactará en menos de <strong style="color:var(--gold-light)">48 horas</strong>.<br>
@@ -464,7 +417,6 @@
 
   <form id="nido-form" onsubmit="submitForm(event)">
 
-    <!-- ══ 01 MODELO ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">01</div>
@@ -477,51 +429,32 @@
         <div class="radio-grid cols2">
           <label class="radio-card">
             <input type="radio" name="modelo" value="Gorrión · 6.000 €" required>
-            <div class="radio-card-inner">
-              <div class="rc-name">El Gorrión</div>
-              <div class="rc-price">Desde 6.000 € · Flat Pack · 15 m²</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Gorrión</div><div class="rc-price">Desde 6.000 € · Flat Pack · 15 m²</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="modelo" value="Flamenco · 15.000 €/módulo">
-            <div class="radio-card-inner">
-              <div class="rc-name">El Flamenco</div>
-              <div class="rc-price">Desde 15.000 €/módulo · Modular · desde 20 m²</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Flamenco</div><div class="rc-price">Desde 15.000 €/módulo · Modular · desde 20 m²</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="modelo" value="Halcón · 36.000 €">
-            <div class="radio-card-inner">
-              <div class="rc-name">El Halcón</div>
-              <div class="rc-price">Desde 36.000 € · 90 m² · 3 dorm.</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Halcón</div><div class="rc-price">Desde 36.000 € · 90 m² · 3 dorm.</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="modelo" value="Águila · 60.000 €">
-            <div class="radio-card-inner">
-              <div class="rc-name">El Águila</div>
-              <div class="rc-price">Desde 60.000 € · 150 m² · Villa lujo</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Águila</div><div class="rc-price">Desde 60.000 € · 150 m² · Villa lujo</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="modelo" value="Colibrí · 36.000 €">
-            <div class="radio-card-inner">
-              <div class="rc-name">El Colibrí</div>
-              <div class="rc-price">Desde 36.000 € · High-Tech · 27–38 m²</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Colibrí</div><div class="rc-price">Desde 36.000 € · High-Tech · 27–38 m²</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="modelo" value="Cuco 36 · 17.500 €">
-            <div class="radio-card-inner">
-              <div class="rc-name">El Cuco 36</div>
-              <div class="rc-price">Desde 17.500 € · Móvil · 36 m² · 2 dorm.</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">El Cuco 36</div><div class="rc-price">Desde 17.500 € · Móvil · 36 m² · 2 dorm.</div></div>
           </label>
           <label class="radio-card" style="grid-column: 1 / -1;">
             <input type="radio" name="modelo" value="Cuco 68 · 25.000 €">
             <div class="radio-card-inner" style="flex-direction:row;align-items:center;justify-content:space-between;">
-              <div class="rc-name">El Cuco 68</div>
-              <div class="rc-price">Desde 25.000 € · Móvil · 68 m² · 3 dorm.</div>
+              <div class="rc-name">El Cuco 68</div><div class="rc-price">Desde 25.000 € · Móvil · 68 m² · 3 dorm.</div>
             </div>
           </label>
         </div>
@@ -532,14 +465,10 @@
       </div>
     </div>
 
-    <!-- ══ 02 SUELO ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">02</div>
-        <div>
-          <div class="section-title">Tu suelo</div>
-          <div class="section-sub">Lo pisas cada día. Merece que lo elijas tú.</div>
-        </div>
+        <div><div class="section-title">Tu suelo</div><div class="section-sub">Lo pisas cada día. Merece que lo elijas tú.</div></div>
       </div>
       <div class="section-body">
         <div class="option-group">
@@ -547,17 +476,11 @@
           <div class="radio-grid cols2">
             <label class="radio-card">
               <input type="radio" name="suelo" value="PVC 1,6 mm (Incluido)" checked>
-              <div class="radio-card-inner">
-                <div class="rc-name">PVC 1,6 mm</div>
-                <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span></div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">PVC 1,6 mm</div><div class="rc-price"><span class="badge badge-incl">INCLUIDO</span></div></div>
             </label>
             <label class="radio-card">
               <input type="radio" name="suelo" value="SPC 4 mm (9 €/m²)" id="suelo-spc">
-              <div class="radio-card-inner">
-                <div class="rc-name">SPC 4 mm</div>
-                <div class="rc-price gold">MEJORA · 9 €/m²</div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">SPC 4 mm</div><div class="rc-price gold">MEJORA · 9 €/m²</div></div>
             </label>
           </div>
         </div>
@@ -565,14 +488,9 @@
           <label class="field-label">Color SPC</label>
           <select name="color_spc" class="field-select">
             <option value="">— Elige color —</option>
-            <option>D1001 · Gris Roble</option>
-            <option>D1002 · Caoba</option>
-            <option>D1003 · Roble Natural</option>
-            <option>D1004 · Madera Miel</option>
-            <option>D1005 · Gris Ceniza</option>
-            <option>D1006 · Blanco Nórdico</option>
-            <option>D1007 · Nogal Oscuro</option>
-            <option>D1008 · Gris Piedra</option>
+            <option>D1001 · Gris Roble</option><option>D1002 · Caoba</option><option>D1003 · Roble Natural</option>
+            <option>D1004 · Madera Miel</option><option>D1005 · Gris Ceniza</option><option>D1006 · Blanco Nórdico</option>
+            <option>D1007 · Nogal Oscuro</option><option>D1008 · Gris Piedra</option>
           </select>
         </div>
         <hr class="divider">
@@ -581,17 +499,11 @@
           <div class="radio-grid cols2">
             <label class="radio-card">
               <input type="radio" name="radiante" value="Sin suelo radiante" checked>
-              <div class="radio-card-inner">
-                <div class="rc-name">Sin suelo radiante</div>
-                <div class="rc-price">Solo tarima</div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">Sin suelo radiante</div><div class="rc-price">Solo tarima</div></div>
             </label>
             <label class="radio-card">
               <input type="radio" name="radiante" value="Suelo radiante de agua (40 €/m²)">
-              <div class="radio-card-inner">
-                <div class="rc-name">Suelo radiante de agua</div>
-                <div class="rc-price gold">MEJORA · 40 €/m²</div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">Suelo radiante de agua</div><div class="rc-price gold">MEJORA · 40 €/m²</div></div>
             </label>
           </div>
           <div class="note-box">Tuberías de agua instaladas en fábrica sobre base aislante · Termostato incluido · Compatible con PVC y SPC</div>
@@ -599,114 +511,72 @@
       </div>
     </div>
 
-    <!-- ══ 03 AISLAMIENTO PAREDES ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">03</div>
-        <div>
-          <div class="section-title">Aislamiento térmico de paredes</div>
-          <div class="section-sub">El panel estructural incorpora aislamiento integrado</div>
-        </div>
+        <div><div class="section-title">Aislamiento térmico de paredes</div><div class="section-sub">El panel estructural incorpora aislamiento integrado</div></div>
       </div>
       <div class="section-body">
         <div class="insul-table">
           <label class="radio-card">
             <input type="radio" name="aislamiento" value="50 mm (Incluido)" checked>
-            <div class="radio-card-inner insul-card included">
-              <div class="insul-mm">50 mm</div>
-              <div class="insul-desc">Estándar · EPS integrado<br>Clima mediterráneo</div>
-              <div class="insul-price">Incluido</div>
-            </div>
+            <div class="radio-card-inner insul-card included"><div class="insul-mm">50 mm</div><div class="insul-desc">Estándar · EPS integrado<br>Clima mediterráneo</div><div class="insul-price">Incluido</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="aislamiento" value="75 mm (A consultar)">
-            <div class="radio-card-inner insul-card">
-              <div class="insul-mm">75 mm</div>
-              <div class="insul-desc">Upgrade · Interior<br>Montaña media</div>
-              <div class="insul-price">A consultar</div>
-            </div>
+            <div class="radio-card-inner insul-card"><div class="insul-mm">75 mm</div><div class="insul-desc">Upgrade · Interior<br>Montaña media</div><div class="insul-price">A consultar</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="aislamiento" value="100 mm (A consultar)">
-            <div class="radio-card-inner insul-card">
-              <div class="insul-mm">100 mm</div>
-              <div class="insul-desc">Premium · Zonas frías<br>Clase A máxima</div>
-              <div class="insul-price">A consultar</div>
-            </div>
+            <div class="radio-card-inner insul-card"><div class="insul-mm">100 mm</div><div class="insul-desc">Premium · Zonas frías<br>Clase A máxima</div><div class="insul-price">A consultar</div></div>
           </label>
         </div>
       </div>
     </div>
 
-    <!-- ══ 04 PAREDES INTERIORES ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">04</div>
-        <div>
-          <div class="section-title">Acabado de paredes interiores</div>
-          <div class="section-sub">Lo que te rodea define cómo te sientes en casa</div>
-        </div>
+        <div><div class="section-title">Acabado de paredes interiores</div><div class="section-sub">Lo que te rodea define cómo te sientes en casa</div></div>
       </div>
       <div class="section-body">
         <div class="radio-grid">
           <label class="radio-card">
             <input type="radio" name="paredes" value="Panel blanco de serie (Incluido)" checked id="pared-base">
-            <div class="radio-card-inner">
-              <div class="rc-name">Panel blanco de serie</div>
-              <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Acabado blanco liso · base estándar de fábrica</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">Panel blanco de serie</div><div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Acabado blanco liso · base estándar de fábrica</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="paredes" value="Mejora A — Bamboo Fiber Board (9 €/m²)" id="pared-bamboo">
-            <div class="radio-card-inner">
-              <div class="rc-name">Mejora A — Bamboo Fiber Board</div>
-              <div class="rc-price gold">MEJORA · 9 €/m² · Panel 8 mm · Antihumedad · 4 colores</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">Mejora A — Bamboo Fiber Board</div><div class="rc-price gold">MEJORA · 9 €/m² · Panel 8 mm · Antihumedad · 4 colores</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="paredes" value="Mejora B — Carbon Crystal Board (9 €/m²)" id="pared-carbon">
-            <div class="radio-card-inner">
-              <div class="rc-name">Mejora B — Carbon Crystal Board</div>
-              <div class="rc-price gold">MEJORA · 9 €/m² · Aspecto piedra o madera premium · 9 colores</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">Mejora B — Carbon Crystal Board</div><div class="rc-price gold">MEJORA · 9 €/m² · Aspecto piedra o madera premium · 9 colores</div></div>
           </label>
         </div>
         <div id="bamboo-colors" class="conditional">
           <label class="field-label" style="margin-top:3mm;">Color Bamboo Fiber Board</label>
           <select name="color_bamboo" class="field-select">
             <option value="">— Elige color —</option>
-            <option>Blanco lino</option>
-            <option>Gris piedra</option>
-            <option>Roble claro</option>
-            <option>Gris arena</option>
+            <option>Blanco lino</option><option>Gris piedra</option><option>Roble claro</option><option>Gris arena</option>
           </select>
         </div>
         <div id="carbon-colors" class="conditional">
           <label class="field-label" style="margin-top:3mm;">Color Carbon Crystal Board</label>
           <select name="color_carbon" class="field-select">
             <option value="">— Elige color —</option>
-            <option>Naranja</option>
-            <option>Mármol blanco</option>
-            <option>Travertino</option>
-            <option>Wengué</option>
-            <option>Roble natural</option>
-            <option>Madera clara</option>
-            <option>Beige miel</option>
-            <option>Blanco neutro</option>
-            <option>Gris perla</option>
+            <option>Naranja</option><option>Mármol blanco</option><option>Travertino</option><option>Wengué</option>
+            <option>Roble natural</option><option>Madera clara</option><option>Beige miel</option>
+            <option>Blanco neutro</option><option>Gris perla</option>
           </select>
         </div>
       </div>
     </div>
 
-    <!-- ══ 05 FACHADA EXTERIOR ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">05</div>
-        <div>
-          <div class="section-title">Fachada exterior</div>
-          <div class="section-sub">Panel Metal Carved 16 mm · Lo primero que ven. Lo último que olvidan.</div>
-        </div>
+        <div><div class="section-title">Fachada exterior</div><div class="section-sub">Panel Metal Carved 16 mm · Lo primero que ven. Lo último que olvidan.</div></div>
       </div>
       <div class="section-body">
         <div class="option-group">
@@ -714,17 +584,11 @@
           <div class="radio-grid cols2">
             <label class="radio-card">
               <input type="radio" name="fachada_color" value="Blanco (Incluido)" checked>
-              <div class="radio-card-inner">
-                <div class="rc-name">Blanco</div>
-                <div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Todos los modelos</div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">Blanco</div><div class="rc-price"><span class="badge badge-incl">INCLUIDO</span> · Todos los modelos</div></div>
             </label>
             <label class="radio-card">
               <input type="radio" name="fachada_color" value="Otro color (9 €/m²)" id="fachada-otro">
-              <div class="radio-card-inner">
-                <div class="rc-name">Otro color o textura</div>
-                <div class="rc-price gold">MEJORA · 9 €/m² · ver carta</div>
-              </div>
+              <div class="radio-card-inner"><div class="rc-name">Otro color o textura</div><div class="rc-price gold">MEJORA · 9 €/m² · ver carta</div></div>
             </label>
           </div>
           <div class="note-box"><strong>Gorrión · Halcón · Águila · Cuco 36 · Cuco 68</strong> — Acceso a toda la carta de colores<br><strong>Flamenco · Colibrí</strong> — Siempre en blanco (sin opción de color)</div>
@@ -734,19 +598,13 @@
           <select name="fachada_ref" class="field-select">
             <option value="">— Elige referencia —</option>
             <optgroup label="Serie ladrillo">
-              <option>BZ-202 · Ladrillo gris claro</option>
-              <option>BZ-101 · Ladrillo blanco ángel</option>
-              <option>BZ-102 · Ladrillo blanco marfil</option>
-              <option>BZ-104 · Ladrillo gris plata</option>
-              <option>BZ-302 · Ladrillo arena marrón</option>
-              <option>BZ-201 · Ladrillo gris oscuro</option>
-              <option>BZ-504 · Ladrillo crema</option>
-              <option>BZ-203 · Ladrillo negro mate</option>
-              <option>BZ-507 · Ladrillo naranja</option>
+              <option>BZ-202 · Ladrillo gris claro</option><option>BZ-101 · Ladrillo blanco ángel</option>
+              <option>BZ-102 · Ladrillo blanco marfil</option><option>BZ-104 · Ladrillo gris plata</option>
+              <option>BZ-302 · Ladrillo arena marrón</option><option>BZ-201 · Ladrillo gris oscuro</option>
+              <option>BZ-504 · Ladrillo crema</option><option>BZ-203 · Ladrillo negro mate</option><option>BZ-507 · Ladrillo naranja</option>
             </optgroup>
             <optgroup label="Serie madera">
-              <option>MZ-0301 · Madera panga-panga</option>
-              <option>PZ-0302 · Madera nogal oscuro</option>
+              <option>MZ-0301 · Madera panga-panga</option><option>PZ-0302 · Madera nogal oscuro</option>
             </optgroup>
             <option value="otro">Otro — lo indico en notas</option>
           </select>
@@ -758,22 +616,19 @@
             <label class="radio-card">
               <input type="radio" name="ventanas" value="PVC corredera doble cristal (Incluida)" checked>
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">PVC corredera · doble cristal 930×1.200 mm</div>
-                <div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
+                <div class="rc-name">PVC corredera · doble cristal 930×1.200 mm</div><div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
               </div>
             </label>
             <label class="radio-card">
               <input type="radio" name="ventanas" value="Aluminio (Upgrade)">
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">Aluminio · Mayor durabilidad y estética</div>
-                <div class="rc-price gold">UPGRADE</div>
+                <div class="rc-name">Aluminio · Mayor durabilidad y estética</div><div class="rc-price gold">UPGRADE</div>
               </div>
             </label>
             <label class="radio-card">
               <input type="radio" name="ventanas" value="Rotura puente térmico Low-E + persiana (Premium)">
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">RPT Low-E · persiana + mosquitera</div>
-                <div class="rc-price gold">PREMIUM</div>
+                <div class="rc-name">RPT Low-E · persiana + mosquitera</div><div class="rc-price gold">PREMIUM</div>
               </div>
             </label>
           </div>
@@ -785,22 +640,19 @@
             <label class="radio-card">
               <input type="radio" name="puerta" value="Acero 50 mm (Incluida)" checked>
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">Acero 50 mm · 970×1.970 mm · doble cara</div>
-                <div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
+                <div class="rc-name">Acero 50 mm · 970×1.970 mm · doble cara</div><div class="rc-price"><span class="badge badge-incl">INCLUIDA</span></div>
               </div>
             </label>
             <label class="radio-card">
               <input type="radio" name="puerta" value="Doble vidrio templado + aluminio (Upgrade)">
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">Doble vidrio templado + aluminio</div>
-                <div class="rc-price gold">UPGRADE</div>
+                <div class="rc-name">Doble vidrio templado + aluminio</div><div class="rc-price gold">UPGRADE</div>
               </div>
             </label>
             <label class="radio-card">
               <input type="radio" name="puerta" value="Corredera aluminio panorámica (Upgrade)">
               <div class="radio-card-inner" style="flex-direction:row;justify-content:space-between;align-items:center;">
-                <div class="rc-name">Corredera aluminio panorámica</div>
-                <div class="rc-price gold">UPGRADE</div>
+                <div class="rc-name">Corredera aluminio panorámica</div><div class="rc-price gold">UPGRADE</div>
               </div>
             </label>
           </div>
@@ -808,58 +660,40 @@
       </div>
     </div>
 
-    <!-- ══ 06 TERRENO ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">06</div>
-        <div>
-          <div class="section-title">¿Tienes terreno?</div>
-          <div class="section-sub">Si no tienes parcela, la buscamos para ti</div>
-        </div>
+        <div><div class="section-title">¿Tienes terreno?</div><div class="section-sub">Si no tienes parcela, la buscamos para ti</div></div>
       </div>
       <div class="section-body">
         <div class="radio-grid cols2">
           <label class="radio-card">
             <input type="radio" name="necesita_terreno" value="no" checked id="terreno-no">
-            <div class="radio-card-inner">
-              <div class="rc-name">Ya tengo terreno</div>
-              <div class="rc-price">Presupuesto llave en mano completo</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">Ya tengo terreno</div><div class="rc-price">Presupuesto llave en mano completo</div></div>
           </label>
           <label class="radio-card">
             <input type="radio" name="necesita_terreno" value="si" id="terreno-si">
-            <div class="radio-card-inner">
-              <div class="rc-name">Necesito que busquéis terreno</div>
-              <div class="rc-price gold">Servicio con partner inmobiliario</div>
-            </div>
+            <div class="radio-card-inner"><div class="rc-name">Necesito que busquéis terreno</div><div class="rc-price gold">Servicio con partner inmobiliario</div></div>
           </label>
         </div>
         <div id="terreno-budget" class="conditional">
           <label class="field-label" style="margin-top:3mm;">Presupuesto máximo para el terreno (€)</label>
-          <input type="number" name="presupuesto_terreno" id="presupuesto-terreno"
-                 class="field-input" placeholder="Ej: 50000" min="0" step="1000">
-          <div class="note-box">
-            <strong>¿Cómo funciona?</strong> Nido45 y su red de partners inmobiliarios localizan parcelas urbanas en la zona que indiques. El precio del terreno se entrega en documento aparte. El presupuesto incluye las comisiones de gestión (2,5% partner + 2,5% Nido45 sobre el precio del terreno).
-          </div>
+          <input type="number" name="presupuesto_terreno" id="presupuesto-terreno" class="field-input" placeholder="Ej: 50000" min="0" step="1000">
+          <div class="note-box"><strong>¿Cómo funciona?</strong> Nido45 y su red de partners inmobiliarios localizan parcelas urbanas en la zona que indiques. El precio del terreno se entrega en documento aparte. El presupuesto incluye las comisiones de gestión (2,5% partner + 2,5% Nido45 sobre el precio del terreno).</div>
         </div>
         <input type="hidden" name="flujo" id="flujo-field" value="B">
       </div>
     </div>
 
-    <!-- ══ 07 PARCELA ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">07</div>
-        <div>
-          <div class="section-title">Tu parcela</div>
-          <div class="section-sub">Municipio o dirección donde se instalará la casa</div>
-        </div>
+        <div><div class="section-title">Tu parcela</div><div class="section-sub">Municipio o dirección donde se instalará la casa</div></div>
       </div>
       <div class="section-body">
         <div class="option-group">
           <label class="field-label">Municipio o dirección *</label>
-          <input type="text" name="parcela" class="field-input" required
-                 placeholder="Ej: Vélez-Málaga, Málaga">
+          <input type="text" name="parcela" class="field-input" required placeholder="Ej: Vélez-Málaga, Málaga">
         </div>
         <div class="option-group">
           <label class="field-label">Referencia catastral (opcional)</label>
@@ -868,14 +702,10 @@
       </div>
     </div>
 
-    <!-- ══ 08 DATOS CONTACTO ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">08</div>
-        <div>
-          <div class="section-title">Tus datos</div>
-          <div class="section-sub">Solo para enviarte el presupuesto</div>
-        </div>
+        <div><div class="section-title">Tus datos</div><div class="section-sub">Solo para enviarte el presupuesto</div></div>
       </div>
       <div class="section-body">
         <div class="field-row" style="margin-bottom:3mm;">
@@ -896,10 +726,8 @@
           <label class="field-label">Horario para llamar</label>
           <select name="horario" class="field-select">
             <option value="">— Sin preferencia —</option>
-            <option>Mañanas (9–13 h)</option>
-            <option>Tardes (15–19 h)</option>
-            <option>Cualquier hora</option>
-            <option>Solo WhatsApp</option>
+            <option>Mañanas (9–13 h)</option><option>Tardes (15–19 h)</option>
+            <option>Cualquier hora</option><option>Solo WhatsApp</option>
           </select>
         </div>
         <div>
@@ -919,7 +747,6 @@
   </form>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <a href="https://nido45.com">nido45.com</a> · nido45spain@gmail.com · +34 645 476 491<br>
   Isla Sofía SLU · NIF B26607044 · El Capitán, Almayate (Málaga) · © 2026 NIDO45
@@ -930,39 +757,26 @@
 
   document.querySelectorAll('input[name="suelo"]').forEach(r => {
     r.addEventListener('change', () => {
-      document.getElementById('spc-colors').classList.toggle(
-        'active', document.getElementById('suelo-spc').checked
-      );
+      document.getElementById('spc-colors').classList.toggle('active', document.getElementById('suelo-spc').checked);
     });
   });
-
   document.querySelectorAll('input[name="paredes"]').forEach(r => {
     r.addEventListener('change', () => {
-      document.getElementById('bamboo-colors').classList.toggle(
-        'active', document.getElementById('pared-bamboo').checked
-      );
-      document.getElementById('carbon-colors').classList.toggle(
-        'active', document.getElementById('pared-carbon').checked
-      );
+      document.getElementById('bamboo-colors').classList.toggle('active', document.getElementById('pared-bamboo').checked);
+      document.getElementById('carbon-colors').classList.toggle('active', document.getElementById('pared-carbon').checked);
     });
   });
-
   document.querySelectorAll('input[name="fachada_color"]').forEach(r => {
     r.addEventListener('change', () => {
-      document.getElementById('fachada-color-select').classList.toggle(
-        'active', document.getElementById('fachada-otro').checked
-      );
+      document.getElementById('fachada-color-select').classList.toggle('active', document.getElementById('fachada-otro').checked);
     });
   });
-
   document.querySelectorAll('input[name="necesita_terreno"]').forEach(r => {
     r.addEventListener('change', () => {
       const necesita = document.getElementById('terreno-si').checked;
       document.getElementById('terreno-budget').classList.toggle('active', necesita);
       document.getElementById('flujo-field').value = necesita ? 'A' : 'B';
-      if (!necesita) {
-        document.getElementById('presupuesto-terreno').value = '';
-      }
+      if (!necesita) document.getElementById('presupuesto-terreno').value = '';
     });
   });
 
@@ -972,7 +786,7 @@
     const form = document.getElementById('nido-form');
     btn.textContent = 'ENVIANDO…';
     btn.disabled = true;
-    const fd = new URLSearchParams(new FormData(form));
+    const fd = new FormData(form);
     fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
       .then(() => {
         form.style.display = 'none';
