@@ -1,6 +1,6 @@
 // ████████████████████████████████████████████████████████████████████████████
 // NIDO45 — PATCH v2 COMPLETO: Precios llave en mano + Flujos A/B/C
-// v2.2 — PDF propuesta comercial completa (12 secciones)
+// v2.3 — PDF propuesta comercial completa + permisos Drive públicos
 // ────────────────────────────────────────────────────────────────────────────
 // INSTRUCCIONES:
 //   1. Abre script.google.com → Presupuestos.gs → pega al FINAL
@@ -168,6 +168,7 @@ function calcularPrecios(d, modelo) {
   };
 }
 
+// ── v2.3: añade permisos públicos al PDF tras guardar en Drive ──────────────
 function generarPresupuesto(datos) {
   var ref     = generarReferencia(datos.nombre);
   var modelo  = detectarModelo(datos.modelo || "");
@@ -176,6 +177,21 @@ function generarPresupuesto(datos) {
   var html    = buildPresupuestoHTML(datos, modelo, precios, ref);
   var pdf     = htmlToPDF(html, ref);
   var url     = guardarEnDrive(pdf, ref);
+
+  // FIX: establecer permisos "anyone with the link can view"
+  // Esto resuelve el error "pide permiso" que recibían los clientes
+  try {
+    var m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (m && m[1]) {
+      DriveApp.getFileById(m[1]).setSharing(
+        DriveApp.Access.ANYONE_WITH_LINK,
+        DriveApp.Permission.VIEW
+      );
+    }
+  } catch (e) {
+    Logger.log("Drive permisos: " + e.toString());
+  }
+
   notificarHugo(datos, ref, url, precios);
   return url;
 }
