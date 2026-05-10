@@ -1,3 +1,11 @@
+
+NIDO45_index_formulario_v2_COMPLETO.html
+
+Page
+1
+/
+1
+100%
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,6 +114,35 @@
     letter-spacing: 0.1em;
   }
   .hero-badge span::before { content: '·'; margin-right: 2mm; color: var(--gold); }
+
+  /* ── LEM banner ── */
+  .lem-banner {
+    background: var(--dark);
+    border-top: 1pt solid rgba(184,148,60,0.25);
+    padding: 4mm 8mm;
+    text-align: center;
+  }
+  .lem-banner-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3mm 6mm;
+  }
+  .lem-item {
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .lem-item::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 8pt;
+  }
 
   /* ── Main layout ── */
   .form-wrap {
@@ -292,45 +329,6 @@
   .insul-card input { position: absolute; opacity: 0; }
   .insul-card input:checked ~ .insul-inner { color: var(--gold); }
 
-  /* ── Services checkboxes ── */
-  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
-  .check-card {
-    position: relative;
-    cursor: pointer;
-  }
-  .check-card input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    width: 0; height: 0;
-  }
-  .check-inner {
-    border: 0.5pt solid var(--border);
-    padding: 3mm 4mm;
-    font-size: 8.5pt;
-    color: var(--text);
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 2.5mm;
-    cursor: pointer;
-  }
-  .check-inner::before {
-    content: '';
-    width: 4mm;
-    height: 4mm;
-    border: 0.5pt solid var(--border);
-    flex-shrink: 0;
-    transition: all 0.15s;
-  }
-  .check-card input:checked ~ .check-inner {
-    border-color: var(--gold);
-    background: #fefaf3;
-  }
-  .check-card input:checked ~ .check-inner::before {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
-
   /* ── Divider ── */
   .divider {
     border: none;
@@ -406,8 +404,8 @@
   @media (max-width: 500px) {
     .radio-grid.cols3 { grid-template-columns: 1fr 1fr; }
     .field-row { grid-template-columns: 1fr; }
-    .check-grid { grid-template-columns: 1fr; }
     .insul-table { grid-template-columns: 1fr; }
+    .lem-banner-inner { flex-direction: column; align-items: center; gap: 2mm; }
   }
 
   /* ── Note box ── */
@@ -440,11 +438,23 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Tu casa ya tiene forma.<em>Ponle precio.</em></h1>
-  <p>Rellena el formulario · En 48 horas recibes tu presupuesto</p>
+  <p>Rellena el formulario · En 48 horas recibes tu presupuesto llave en mano</p>
   <div class="hero-badge">
     <span>Sin compromiso</span>
     <span>Válido 30 días</span>
     <span>Respuesta en 48 h</span>
+  </div>
+</div>
+
+<!-- LLAVE EN MANO BANNER -->
+<div class="lem-banner">
+  <div class="lem-banner-inner">
+    <div class="lem-item">Transporte al puerto más cercano</div>
+    <div class="lem-item">Despacho de aduanas</div>
+    <div class="lem-item">Descarga en parcela</div>
+    <div class="lem-item">Montadores</div>
+    <div class="lem-item">Instaladores</div>
+    <div class="lem-item">Arquitecto + Perito</div>
   </div>
 </div>
 
@@ -539,7 +549,6 @@
         </div>
       </div>
       <div class="section-body">
-
         <div class="option-group">
           <div class="option-label">Tarima</div>
           <div class="radio-grid cols2">
@@ -559,8 +568,6 @@
             </label>
           </div>
         </div>
-
-        <!-- SPC colors — conditional -->
         <div id="spc-colors" class="conditional">
           <label class="field-label">Color SPC</label>
           <select name="color_spc" class="field-select">
@@ -575,9 +582,7 @@
             <option>D1008 · Gris Piedra</option>
           </select>
         </div>
-
         <hr class="divider">
-
         <div class="option-group">
           <div class="option-label">Suelo radiante</div>
           <div class="radio-grid cols2">
@@ -598,7 +603,6 @@
           </div>
           <div class="note-box">Tuberías de agua instaladas en fábrica sobre base aislante · Termostato incluido · Compatible con PVC y SPC</div>
         </div>
-
       </div>
     </div>
 
@@ -674,8 +678,6 @@
             </div>
           </label>
         </div>
-
-        <!-- Bamboo colors — conditional -->
         <div id="bamboo-colors" class="conditional">
           <label class="field-label" style="margin-top:3mm;">Color Bamboo Fiber Board</label>
           <select name="color_bamboo" class="field-select">
@@ -686,8 +688,6 @@
             <option>Gris arena</option>
           </select>
         </div>
-
-        <!-- Carbon colors — conditional -->
         <div id="carbon-colors" class="conditional">
           <label class="field-label" style="margin-top:3mm;">Color Carbon Crystal Board</label>
           <select name="color_carbon" class="field-select">
@@ -703,7 +703,6 @@
             <option>Gris perla</option>
           </select>
         </div>
-
       </div>
     </div>
 
@@ -717,7 +716,6 @@
         </div>
       </div>
       <div class="section-body">
-
         <div class="option-group">
           <div class="option-label">Color de fachada</div>
           <div class="radio-grid cols2">
@@ -738,8 +736,6 @@
           </div>
           <div class="note-box"><strong>Gorrión · Halcón · Águila · Cuco 36 · Cuco 68</strong> — Acceso a toda la carta de colores<br><strong>Flamenco · Colibrí</strong> — Siempre en blanco (sin opción de color)</div>
         </div>
-
-        <!-- Facade color selector — conditional -->
         <div id="fachada-color-select" class="conditional">
           <label class="field-label">Referencia de color</label>
           <select name="fachada_ref" class="field-select">
@@ -762,9 +758,7 @@
             <option value="otro">Otro — lo indico en notas</option>
           </select>
         </div>
-
         <hr class="divider">
-
         <div class="option-group">
           <div class="option-label">Ventanas</div>
           <div class="radio-grid">
@@ -791,9 +785,7 @@
             </label>
           </div>
         </div>
-
         <hr class="divider">
-
         <div class="option-group">
           <div class="option-label">Puerta de acceso</div>
           <div class="radio-grid">
@@ -820,46 +812,44 @@
             </label>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- ══ 06 SERVICIOS ADICIONALES ══ -->
+    <!-- ══ 06 TERRENO ══ -->
     <div class="form-section">
       <div class="section-header">
         <div class="section-num">06</div>
         <div>
-          <div class="section-title">Servicios adicionales</div>
-          <div class="section-sub">Márcalos — te los presupuestamos aparte</div>
+          <div class="section-title">¿Tienes terreno?</div>
+          <div class="section-sub">Si no tienes parcela, la buscamos para ti</div>
         </div>
       </div>
       <div class="section-body">
-        <div class="check-grid">
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Búsqueda de terreno">
-            <div class="check-inner">Búsqueda de terreno</div>
+        <div class="radio-grid cols2">
+          <label class="radio-card">
+            <input type="radio" name="necesita_terreno" value="no" checked id="terreno-no">
+            <div class="radio-card-inner">
+              <div class="rc-name">Ya tengo terreno</div>
+              <div class="rc-price">Presupuesto llave en mano completo</div>
+            </div>
           </label>
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Transporte a parcela">
-            <div class="check-inner">Transporte a parcela</div>
-          </label>
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Montaje e instalación">
-            <div class="check-inner">Montaje e instalación</div>
-          </label>
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Licencia de obra">
-            <div class="check-inner">Licencia de obra</div>
-          </label>
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Cimentación y terreno">
-            <div class="check-inner">Cimentación y terreno</div>
-          </label>
-          <label class="check-card">
-            <input type="checkbox" name="servicios" value="Acometidas (luz/agua)">
-            <div class="check-inner">Acometidas (luz/agua)</div>
+          <label class="radio-card">
+            <input type="radio" name="necesita_terreno" value="si" id="terreno-si">
+            <div class="radio-card-inner">
+              <div class="rc-name">Necesito que busquéis terreno</div>
+              <div class="rc-price gold">Servicio con partner inmobiliario</div>
+            </div>
           </label>
         </div>
+        <div id="terreno-budget" class="conditional">
+          <label class="field-label" style="margin-top:3mm;">Presupuesto máximo para el terreno (€)</label>
+          <input type="number" name="presupuesto_terreno" id="presupuesto-terreno"
+                 class="field-input" placeholder="Ej: 50000" min="0" step="1000">
+          <div class="note-box">
+            <strong>¿Cómo funciona?</strong> Nido45 y su red de partners inmobiliarios localizan parcelas urbanas en la zona que indiques. El precio del terreno se entrega en documento aparte. El presupuesto incluye las comisiones de gestión (2,5% partner + 2,5% Nido45 sobre el precio del terreno).
+          </div>
+        </div>
+        <input type="hidden" name="flujo" id="flujo-field" value="B">
       </div>
     </div>
 
@@ -869,22 +859,19 @@
         <div class="section-num">07</div>
         <div>
           <div class="section-title">Tu parcela</div>
-          <div class="section-sub">Para calcular transporte y cimentación</div>
+          <div class="section-sub">Municipio o dirección donde se instalará la casa</div>
         </div>
       </div>
       <div class="section-body">
         <div class="option-group">
-          <label class="field-label">Dirección o municipio</label>
-          <input type="text" name="parcela" class="field-input" placeholder="Ej: Vélez-Málaga, Málaga">
+          <label class="field-label">Municipio o dirección *</label>
+          <input type="text" name="parcela" class="field-input" required
+                 placeholder="Ej: Vélez-Málaga, Málaga">
         </div>
         <div class="option-group">
           <label class="field-label">Referencia catastral (opcional)</label>
           <input type="text" name="catastral" class="field-input" placeholder="Ej: 29XXX0001XXXXXXXX">
         </div>
-        <label class="check-card" style="display:block;margin-top:2mm;">
-          <input type="checkbox" name="sin_terreno" value="Sí">
-          <div class="check-inner">No tengo terreno — quiero ayuda para encontrarlo</div>
-        </label>
       </div>
     </div>
 
@@ -926,9 +913,8 @@
           <label class="field-label">Notas adicionales</label>
           <textarea name="notas" class="field-textarea" placeholder="Cuéntanos algo más sobre tu proyecto..."></textarea>
         </div>
-
         <div class="submit-wrap">
-          <button type="submit" class="btn-submit" id="submit-btn">QUIERO MI PRESUPUESTO</button>
+          <button type="submit" class="btn-submit" id="submit-btn">QUIERO MI PRESUPUESTO LLAVE EN MANO</button>
           <div class="submit-note">
             En 48 horas recibes respuesta · Sin compromiso · Válido 30 días<br>
             Datos protegidos RGPD · Isla Sofía SLU · NIF B26607044
@@ -947,20 +933,16 @@
 </footer>
 
 <script>
-  // ── GOOGLE APPS SCRIPT URL ──
-  // Reemplaza esta URL con tu endpoint de Google Apps Script actual:
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz51KZGizoOxCrKadkd47t_zsuCwTwFTu_s_o08R37BtnL7klKXn3-pwO2eH2txRFs/exec';
 
-  // ── Conditional: SPC colors ──
   document.querySelectorAll('input[name="suelo"]').forEach(r => {
     r.addEventListener('change', () => {
       document.getElementById('spc-colors').classList.toggle(
-        'active', r.value.includes('SPC') && r.checked
+        'active', document.getElementById('suelo-spc').checked
       );
     });
   });
 
-  // ── Conditional: Wall colors ──
   document.querySelectorAll('input[name="paredes"]').forEach(r => {
     r.addEventListener('change', () => {
       document.getElementById('bamboo-colors').classList.toggle(
@@ -972,7 +954,6 @@
     });
   });
 
-  // ── Conditional: Facade color selector ──
   document.querySelectorAll('input[name="fachada_color"]').forEach(r => {
     r.addEventListener('change', () => {
       document.getElementById('fachada-color-select').classList.toggle(
@@ -981,22 +962,24 @@
     });
   });
 
-  // ── SUBMIT ──
+  document.querySelectorAll('input[name="necesita_terreno"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const necesita = document.getElementById('terreno-si').checked;
+      document.getElementById('terreno-budget').classList.toggle('active', necesita);
+      document.getElementById('flujo-field').value = necesita ? 'A' : 'B';
+      if (!necesita) {
+        document.getElementById('presupuesto-terreno').value = '';
+      }
+    });
+  });
+
   function submitForm(e) {
     e.preventDefault();
     const btn  = document.getElementById('submit-btn');
     const form = document.getElementById('nido-form');
     btn.textContent = 'ENVIANDO…';
     btn.disabled = true;
-
     const fd = new FormData(form);
-
-    // Agrupar checkboxes de servicios en un solo campo
-    const servicios = [...form.querySelectorAll('input[name="servicios"]:checked')]
-      .map(c => c.value).join(', ');
-    if (servicios) fd.set('servicios', servicios);
-
-    // no-cors: Apps Script recibe el POST aunque no podamos leer la respuesta
     fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
       .then(() => {
         form.style.display = 'none';
@@ -1004,7 +987,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(() => {
-        btn.textContent = 'QUIERO MI PRESUPUESTO';
+        btn.textContent = 'QUIERO MI PRESUPUESTO LLAVE EN MANO';
         btn.disabled = false;
         alert('Error al enviar. Por favor inténtalo de nuevo o escríbenos a nido45spain@gmail.com');
       });
@@ -1012,3 +995,4 @@
 </script>
 </body>
 </html>
+Displaying NIDO45_index_formulario_v2_COMPLETO.html.
