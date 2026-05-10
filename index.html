@@ -971,7 +971,7 @@
     const form = document.getElementById('nido-form');
     btn.textContent = 'ENVIANDO…';
     btn.disabled = true;
-    const fd = new FormData(form);
+    const fd = new URLSearchParams(new FormData(form));
     fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
       .then(() => {
         form.style.display = 'none';
