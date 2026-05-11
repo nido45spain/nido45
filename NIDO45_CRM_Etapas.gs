@@ -1,13 +1,13 @@
 // ████████████████████████████████████████████████████████████████████████████
 // NIDO45 — CRM ETAPAS · Motor de triggers completo
-// v1.2 — sin emojis en HTML de correos
+// v1.3 — correos [CLIENTE] van a d.email + BCC a EMAIL_DESTINO
 // ████████████████████████████████████████████████████████████████████████████
 
 var EMAIL_DESTINO = 'casamodularhm@gmail.com';
 var AIRTABLE_BASE  = 'appYzLd8OUL2Kdw73';
 var AIRTABLE_TABLE = 'tblbduDaBy3LYNzyR';
 
-// IDs de campo — inmunes a caracteres BOM o renombrados
+// IDs de campo
 var F_NOMBRE   = 'fldSzjegYRs4B6q8J';
 var F_EMAIL    = 'fldj5CB880MLq4ysa';
 var F_TELEFONO = 'fldcQhjCqoPe3dO7l';
@@ -20,7 +20,7 @@ var F_FLUJO    = 'fldvHoEJ4IGKHMzPv';
 var F_ID_CRM   = 'fldJBRYHdjVTyLKfe';
 
 // ─────────────────────────────────────────────────────────────
-// WEBHOOK — doPostWebhook (no doPost, evita conflicto)
+// WEBHOOK
 // ─────────────────────────────────────────────────────────────
 function doPostWebhook(e) {
   try {
@@ -43,7 +43,7 @@ function doPostWebhook(e) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// POLLING — returnFieldsByFieldId=true (fix error 422 BOM)
+// POLLING
 // ─────────────────────────────────────────────────────────────
 function instalarTriggerPolling() {
   ScriptApp.getProjectTriggers().forEach(function(t) {
@@ -94,23 +94,22 @@ function procesarCambioEtapa(recordId, etapa, datos) {
   switch (etapa) {
     case 'Presupuesto enviado':              _enviarPresupuestoCliente(datos); break;
     case 'Venta cerrada -> Flujo Llave en Mano': _enviarVentaCerradaNido45(datos); break;
+    case 'FABRICACI\u00d3N':
     case 'FABRICACION':    _enviarFabrica(datos); _enviarArquitecto(datos); break;
     case 'CASA LISTA':     _enviarCasaListaCliente(datos); break;
+    case 'ENV\u00cdO':
     case 'ENVIO':          _enviarEnvioFabrica(datos); _enviarEnvioDespachoAduanas(datos); break;
     case 'LLEGADA A DESTINO': _enviarLlegadaPerito(datos); _enviarLlegadaCliente(datos); break;
+    case 'TRANSPORTE E INSTALACI\u00d3N':
     case 'TRANSPORTE E INSTALACION': _enviarTransporteDespacho(datos); _enviarTransportePerito(datos); break;
     case 'OBRA':           _enviarObraCliente(datos); break;
     case 'ENTREGA DE LLAVES': _enviarEntregaLlavesCliente(datos); _enviarEntregaLlavesNido45(datos); break;
-    // Aliases con tilde (por si Airtable los devuelve con acento)
-    case 'FABRICACI\u00d3N': _enviarFabrica(datos); _enviarArquitecto(datos); break;
-    case 'ENV\u00cdO':       _enviarEnvioFabrica(datos); _enviarEnvioDespachoAduanas(datos); break;
-    case 'TRANSPORTE E INSTALACI\u00d3N': _enviarTransporteDespacho(datos); _enviarTransportePerito(datos); break;
     default: Logger.log('[CRM] Etapa "' + etapa + '" sin accion configurada.');
   }
 }
 
 // ─────────────────────────────────────────────────────────────
-// CORREOS
+// CORREOS [CLIENTE] — van a d.email + BCC EMAIL_DESTINO
 // ─────────────────────────────────────────────────────────────
 
 function _enviarPresupuestoCliente(d) {
@@ -132,8 +131,58 @@ function _enviarPresupuestoCliente(d) {
     + '<p>Tel: <a href="tel:+34645476491">+34 645 476 491</a> | Email: <a href="mailto:nido45spain@gmail.com">nido45spain@gmail.com</a></p>'
     + '<p>Un cordial saludo,<br><strong>Hugo Andres Perea Lisbona</strong><br>Director Comercial NIDO45</p>'
     + _pie() + '</div>';
-  _send(asunto, html);
+  _sendCliente(asunto, html, d.email);
 }
+
+function _enviarCasaListaCliente(d) {
+  var asunto = '[CLIENTE] Tu casa NIDO45 esta lista - ' + d.nombre + ' - ' + d.modelo + ' - Pago 2/4';
+  var html = _cab('PARA: CLIENTE','Tu casa esta lista en fabrica - Pago 2/4')
+    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
+    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> ha completado fabricacion.</p>'
+    + _tabla([['Modelo',d.modelo],['Referencia',d.idCRM],['Estado','Lista en fabrica - Pendiente embarque']])
+    + '<p>Para autorizar el embarque: <strong>segundo pago (40%)</strong>:</p>'
+    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 (Cajamar) - Concepto: Ref. ' + d.idCRM + ' - Pago 2/4</p>'
+    + _pie() + '</div>';
+  _sendCliente(asunto, html, d.email);
+}
+
+function _enviarLlegadaCliente(d) {
+  var asunto = '[CLIENTE] Tu casa ha llegado a Espana - ' + d.nombre + ' - ' + d.modelo + ' - Pago 3/4';
+  var html = _cab('PARA: CLIENTE','Tu casa ha llegado a Espana - Pago 3/4')
+    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
+    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> ha llegado a Espana.</p>'
+    + '<p>Para proceder con transporte e instalacion, <strong>tercer pago (20%)</strong>:</p>'
+    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 - Concepto: Ref. ' + d.idCRM + ' - Pago 3/4</p>'
+    + _pie() + '</div>';
+  _sendCliente(asunto, html, d.email);
+}
+
+function _enviarObraCliente(d) {
+  var asunto = '[CLIENTE] Inicio de obra - ' + d.nombre + ' - ' + d.modelo + ' - Pago final 4/4';
+  var html = _cab('PARA: CLIENTE','Inicio de obra - Pago final 4/4')
+    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
+    + '<p>Hola <strong>' + d.nombre + '</strong>, el equipo NIDO45 ha comenzado el montaje de tu <strong>' + d.modelo + '</strong>.</p>'
+    + '<p><strong>Pago final (10%)</strong> para proceder con entrega de llaves:</p>'
+    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 - Concepto: Ref. ' + d.idCRM + ' - Pago 4/4 (FINAL)</p>'
+    + _pie() + '</div>';
+  _sendCliente(asunto, html, d.email);
+}
+
+function _enviarEntregaLlavesCliente(d) {
+  var asunto = '[CLIENTE] Entrega de llaves NIDO45 - ' + d.nombre + ' - ' + d.modelo;
+  var html = _cab('PARA: CLIENTE','Bienvenido a tu nueva casa NIDO45')
+    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
+    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> esta lista para disfrutarla.</p>'
+    + _tabla([['Referencia',d.idCRM],['Modelo',d.modelo],['Garantia estructura','3 anos'],['Garantia instalaciones','1 ano']])
+    + '<p>Recibiras el <strong>Acta de Recepcion</strong> para firmar y activar la garantia.</p>'
+    + '<p>Un abrazo,<br><strong>Hugo Andres Perea Lisbona</strong> - Director Comercial NIDO45</p>'
+    + _pie() + '</div>';
+  _sendCliente(asunto, html, d.email);
+}
+
+// ─────────────────────────────────────────────────────────────
+// CORREOS INTERNOS — solo a EMAIL_DESTINO
+// ─────────────────────────────────────────────────────────────
 
 function _enviarVentaCerradaNido45(d) {
   var asunto = '[NIDO45] Venta cerrada - ' + d.nombre + ' - ' + d.modelo + ' - Iniciar LEM';
@@ -165,18 +214,6 @@ function _enviarArquitecto(d) {
     + _tabla([['Referencia',d.idCRM],['Modelo',d.modelo],['Nidos',d.nidos||'-'],['Cliente',d.nombre],['Ubicacion parcela',d.parcela||'-'],['Flujo',d.flujo]])
     + '<ul><li>Supervision y certificacion tecnica</li><li>Coordinacion con montadores e instaladores</li><li>Peritaje de recepcion</li><li>Informe final para entrega de llaves</li></ul>'
     + '<p>Casa lista aprox. en <strong>18 dias habiles</strong>. Te avisaremos antes del embarque.</p>'
-    + _pie() + '</div>';
-  _send(asunto, html);
-}
-
-function _enviarCasaListaCliente(d) {
-  var asunto = '[CLIENTE] Tu casa NIDO45 esta lista - ' + d.nombre + ' - ' + d.modelo + ' - Pago 2/4';
-  var html = _cab('PARA: CLIENTE','Tu casa esta lista en fabrica - Pago 2/4')
-    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
-    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> ha completado fabricacion.</p>'
-    + _tabla([['Modelo',d.modelo],['Referencia',d.idCRM],['Estado','Lista en fabrica - Pendiente embarque']])
-    + '<p>Para autorizar el embarque: <strong>segundo pago (40%)</strong>:</p>'
-    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 (Cajamar) - Concepto: Ref. ' + d.idCRM + ' - Pago 2/4</p>'
     + _pie() + '</div>';
   _send(asunto, html);
 }
@@ -214,17 +251,6 @@ function _enviarLlegadaPerito(d) {
   _send(asunto, html);
 }
 
-function _enviarLlegadaCliente(d) {
-  var asunto = '[CLIENTE] Tu casa ha llegado a Espana - ' + d.nombre + ' - ' + d.modelo + ' - Pago 3/4';
-  var html = _cab('PARA: CLIENTE','Tu casa ha llegado a Espana - Pago 3/4')
-    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
-    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> ha llegado a Espana.</p>'
-    + '<p>Para proceder con transporte e instalacion, <strong>tercer pago (20%)</strong>:</p>'
-    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 - Concepto: Ref. ' + d.idCRM + ' - Pago 3/4</p>'
-    + _pie() + '</div>';
-  _send(asunto, html);
-}
-
 function _enviarTransporteDespacho(d) {
   var asunto = '[DESPACHO DE ADUANAS] Coordinar transporte a parcela - ' + d.modelo + ' - Ref: ' + d.idCRM;
   var html = _cab('PARA: DESPACHO DE ADUANAS','Transporte a parcela autorizado')
@@ -249,52 +275,54 @@ function _enviarTransportePerito(d) {
   _send(asunto, html);
 }
 
-function _enviarObraCliente(d) {
-  var asunto = '[CLIENTE] Inicio de obra - ' + d.nombre + ' - ' + d.modelo + ' - Pago final 4/4';
-  var html = _cab('PARA: CLIENTE','Inicio de obra - Pago final 4/4')
-    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
-    + '<p>Hola <strong>' + d.nombre + '</strong>, el equipo NIDO45 ha comenzado el montaje de tu <strong>' + d.modelo + '</strong>.</p>'
-    + '<p><strong>Pago final (10%)</strong> para proceder con entrega de llaves:</p>'
-    + '<p style="background:#f7f4ee;padding:12px;border-left:3px solid #b8943c;">- Isla Sofia SLU - IBAN ES26 3058 0794 3727 2001 3940 - Concepto: Ref. ' + d.idCRM + ' - Pago 4/4 (FINAL)</p>'
-    + _pie() + '</div>';
-  _send(asunto, html);
-}
-
-function _enviarEntregaLlavesCliente(d) {
-  var asunto = '[CLIENTE] Entrega de llaves NIDO45 - ' + d.nombre + ' - ' + d.modelo;
-  var html = _cab('PARA: CLIENTE','Bienvenido a tu nueva casa NIDO45')
-    + '<div style="font-family:Arial,sans-serif;padding:20px;">'
-    + '<p>Hola <strong>' + d.nombre + '</strong>, tu casa <strong>' + d.modelo + '</strong> esta lista para disfrutarla.</p>'
-    + _tabla([['Referencia',d.idCRM],['Modelo',d.modelo],['Garantia estructura','3 anos'],['Garantia instalaciones','1 ano']])
-    + '<p>Recibiras el <strong>Acta de Recepcion</strong> para firmar y activar la garantia.</p>'
-    + '<p>Un abrazo,<br><strong>Hugo Andres Perea Lisbona</strong> - Director Comercial NIDO45</p>'
-    + _pie() + '</div>';
-  _send(asunto, html);
-}
-
 function _enviarEntregaLlavesNido45(d) {
   var asunto = '[NIDO45] Proyecto completado - ' + d.nombre + ' - ' + d.idCRM;
   var html = _cab('PARA: NIDO45','Proyecto completado - Archivar expediente')
     + '<div style="font-family:Arial,sans-serif;padding:20px;">'
     + '<p>Etapa final: <strong>ENTREGA DE LLAVES</strong>.</p>'
-    + _tabla([['Referencia',d.idCRM],['Cliente',d.nombre],['Modelo',d.modelo],['Parcela',d.parcela||'-']])
+    + _tabla([['Referencia',d.idCRM],['Cliente',d.nombre],['Email',d.email],['Modelo',d.modelo],['Parcela',d.parcela||'-']])
     + '<ul><li>Emitir y firmar Acta de Recepcion</li><li>Archivar expediente en Drive</li><li>Solicitar resena al cliente</li></ul>'
     + _pie() + '</div>';
   _send(asunto, html);
 }
 
 // ─────────────────────────────────────────────────────────────
-// HELPERS
+// HELPERS DE ENVÍO
 // ─────────────────────────────────────────────────────────────
 
+// Correos internos: solo a EMAIL_DESTINO
 function _send(asunto, htmlBody) {
   try {
     GmailApp.sendEmail(EMAIL_DESTINO, asunto, '', {htmlBody: htmlBody});
-    Logger.log('[CRM] OK: ' + asunto.substring(0, 70));
+    Logger.log('[CRM] OK (interno): ' + asunto.substring(0, 70));
   } catch (err) {
     Logger.log('[CRM] ERROR email: ' + err.toString());
   }
 }
+
+// Correos [CLIENTE]: a d.email con BCC EMAIL_DESTINO
+// Si d.email está vacío, envía solo a EMAIL_DESTINO
+function _sendCliente(asunto, htmlBody, clienteEmail) {
+  try {
+    if (clienteEmail && clienteEmail.indexOf('@') > -1) {
+      GmailApp.sendEmail(clienteEmail, asunto, '', {
+        htmlBody: htmlBody,
+        bcc: EMAIL_DESTINO
+      });
+      Logger.log('[CRM] OK (cliente): ' + clienteEmail + ' | ' + asunto.substring(0, 60));
+    } else {
+      // Sin email de cliente: va solo a EMAIL_DESTINO con aviso en asunto
+      GmailApp.sendEmail(EMAIL_DESTINO, '[SIN EMAIL CLIENTE] ' + asunto, '', {htmlBody: htmlBody});
+      Logger.log('[CRM] AVISO: sin email cliente, enviado a EMAIL_DESTINO | ' + asunto.substring(0, 60));
+    }
+  } catch (err) {
+    Logger.log('[CRM] ERROR email cliente: ' + err.toString());
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// HELPERS GENERALES
+// ─────────────────────────────────────────────────────────────
 
 function _cab(etiqueta, titulo) {
   return '<div style="background:#1a3c5e;color:#fff;padding:12px 20px;font-family:Arial,sans-serif;">'
@@ -363,7 +391,7 @@ function testPresupuestoEnviado() {
     nombre:'Maria Garcia Lopez', email:'test@ejemplo.com', telefono:'+34 600 000 000',
     modelo:'Halcon', nidos:6, parcela:'Velez-Malaga, Malaga',
     urlPDF:'https://drive.google.com/file/d/EJEMPLO/view',
-    flujo:'B - Terreno urbano', idCRM:'c099-TEST'
+    flujo:'B', idCRM:'c099-TEST'
   });
 }
 
@@ -374,5 +402,5 @@ function testTodasLasEtapas() {
   ['Presupuesto enviado','Venta cerrada -> Flujo Llave en Mano','FABRICACION',
    'CASA LISTA','ENVIO','LLEGADA A DESTINO','TRANSPORTE E INSTALACION','OBRA','ENTREGA DE LLAVES'
   ].forEach(function(etapa) { procesarCambioEtapa('recTEST', etapa, d); Utilities.sleep(300); });
-  Logger.log('Test completo -> ' + EMAIL_DESTINO);
+  Logger.log('Test completo -> cliente: test@ejemplo.com, BCC: ' + EMAIL_DESTINO);
 }
